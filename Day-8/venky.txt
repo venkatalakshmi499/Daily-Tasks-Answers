@@ -1,0 +1,8 @@
+
+name: venky
+dob : 27/05/1999
+marks 1: 85
+marks 2: 90
+marks 3: 
+average :206
+total: 270

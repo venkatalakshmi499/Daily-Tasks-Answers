@@ -1,0 +1,8 @@
+
+name: sruthi
+dob : 05/11/1998
+marks 1: 60
+marks 2: 70
+marks 3: 
+average :156
+total: 210

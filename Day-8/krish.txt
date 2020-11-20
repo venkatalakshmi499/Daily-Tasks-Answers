@@ -1,0 +1,8 @@
+
+name: krish
+dob : 05/06/2000
+marks 1: 75
+marks 2: 90
+marks 3: 
+average :191
+total: 245
