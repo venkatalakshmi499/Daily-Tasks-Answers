@@ -1,0 +1,30 @@
+<!Doctype html>
+<html lang="en">
+	<head>
+		<title>Home Page </title>
+	</head>
+	<body bgcolor="#ff99ff">
+		<style type:"text/css">
+		h1
+		{
+		color:#ff3399;
+		}
+		p{
+		color:#00ff00;
+		}
+		h2{
+		color:#ff0033;
+		}
+		</style>
+		<h1>Home page of Forest Management</h1>
+		<h2>Forest Management<h2>
+		
+		<p>
+		Ecological forest management is not yet practiced everywhere in the world and limitations to its widespread application remain. Limitations include incomplete knowledge of the: effects of climate change on terrestrial ecosystem; life histories of previously noncommercial tree species and other plants and animals; the competition–density dynamics of mixed-species forests; and the appropriate scale at which to measure ecosystem responses to silvicultural treatments. Also lacking is economic knowledge about the total value of benefits derived from forests and about ways to evaluate tradeoffs among various goods and services.
+		</p>
+		<h2>Information</h2>
+		<p>It provides the general information.</p><br>
+		<a href="webpage.html">Return to dashboard</a>
+
+	</body>
+</html>

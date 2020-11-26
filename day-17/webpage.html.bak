@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+a:link, a:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  background-color: #6666cc;
+}
+</style>
+	</head>
+	<body bgcolor="#669900">
+		<h2 align="center" style="color:navy">Welcome to Forestry Management</h2>
+	
+		<form>
+			<table align="center">
+				<tr>
+					<td>
+						<a href="home.html">Home</a>
+					</td>
+				
+					<td>
+						<a href="AboutUs.html">About us</a>
+					</td>
+				
+					<td>
+						<a href="event.html">Events</a>
+					</td>
+				
+					<td>
+						<a href="services.html">Services</a>
+					</td>
+				
+					<td>
+						<a href="contact.html">Contact</a>
+					</td>
+				
+					<td>
+						<a href="LoginPage.html">Logout</a>
+					</td>
+				</tr>
+				
+			</table>
+		</form>
+ </head>
+ <body>
+  
+ </body>
+</html>

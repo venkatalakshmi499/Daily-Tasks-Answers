@@ -1,0 +1,22 @@
+<!Doctype html>
+<html lang="en">
+	<head>
+		<title>Contact Page </title>
+	</head>
+	<body bgcolor="bisque">
+
+		<h3>Contact us </h3>
+		<pre>
+		HCL Technologies Ltd,
+		Surya Saphire., 
+		Plot#3, 
+		1St Phase, Hosur Road, 
+		Electronic City Banglore
+		560100<br>
+		<b>Mobile :</b>+91 9428387476
+		<b>Email :</b>abc@hcl.com
+		</pre><br>
+		<p><a href="webpage.html">Return to Dashboard</a>
+
+	</body>
+</html>
