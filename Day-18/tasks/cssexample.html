@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+#para1 {
+  text-align: center;
+  color: red;
+}
+p {
+  text-align: center;
+  color: blue;
+} 
+.center {
+  text-align: center;
+  color:#00ff00;
+}
+p.center {
+  text-align: center;
+  color: #ff0099;
+}
+p.large {
+  font-size: 300%;
+}
+* {
+  background-color: yellow;
+}
+div * {
+  background-color: #ffffcc;
+}
+div > p {
+  background-color: #000000;
+}
+div + p {
+  background-color: #ff0000;
+}
+p ~ ul {
+  background:#66ffcc;
+}
+a[target] {
+  background-color: #ff00ff;
+}
+a[target=_blank] {
+  background-color: #003399;
+}
+[title~=flower] {
+  border: 5px solid yellow;
+}
+</style>
+ </head>
+ <body>
+ <p id="para1">Hello World!</p>
+<p>This paragraph is affected by the style by paragraph tag.</p>
+<h1 class="center">green and center-aligned heading</h1>
+<p class="center">green and center-aligned paragraph.</p> 
+<h1 class="center">This heading will not be affected</h1>
+<p class="center">This paragraph will be red and center-aligned.</p> 
+<p class="center large">This paragraph will be red, center-aligned, and in a large font-size.</p> 
+<div class="intro">
+  <p id="firstname">My name is Donald.</p>
+  <p id="hometown">I live in Duckburg.</p>
+  <div>
+  <h2>My name is Donald</h2>
+  <p>I live in Duckburg.</p>
+</div>
+<div>A div element.</div>
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<p>The first paragraph.</p>
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<h2>Another list</h2>
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+<a href="http://www.wikipedia.org" target="_top">wikipedia.org</a>
+<a href="http://www.disney.com" target="_blank">disney.com</a>
+
+  
+ </body>
+</html>

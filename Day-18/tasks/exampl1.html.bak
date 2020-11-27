@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <style type="text/css">
+			p{
+				/*font-family:"verdana:
+				font-size:30px;
+				font-stretch:ultra-expanded;
+				 color:rgb(1,2,3); */
+				 font:italic small-caps lighter 30px verdana;
+			 }
+			
+			 body{
+			 background:url("icon1.jpg");
+			 background-repeat:no-repeat;
+			 background-position:top right;
+			/* color:#3333ff; */
+			 div
+			 {
+			 background-color:lime;
+			  height:40px;
+			  width:50px;
+			 }
+			 
+			 }
+			
+			
+ </style>
+ <body>
+		<p>hi this is venky</p>	
+		<p>some content CSS selectors are used to "find" (or select) the HTML elements you want to style. We can divide CSS selectors into five categories: Simple selectors (select elements based on name, id, class) Combinator selectors (select elements based on a specific relationship between them)</p>
+		
+ </body>
+</html>

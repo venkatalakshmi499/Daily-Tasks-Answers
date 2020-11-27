@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style type="text/css">
+  a#siz:hover{
+  font-size:180%;
+  }
+  a.siz:visited{
+  color:red;
+  }
+  div{
+  width:700px;
+  height:100px;
+  background-color:lime;
+  
+  }
+  div#first:hover{
+	width:900px;
+	height:100px;
+	animation:spin 2s linear;
+  }
+  @Keyframes spin{
+  0%{transform:rotate(0deg);}
+   100%{transform:rotate(360deg);}
+
+  }
+  </style>
+ </head>
+ <body>
+  <p><a class="siz" href="http://www.google.com">this link changes font size</a></p>
+  <div id="first">
+  this is first div
+	
+  </div>
+ </body>
+</html>
