@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <script type="text/javascript"> </script>
+ </head>
+ <body>
+ 
+ <form method="post" acton="">
+  <button type="submit" onclick="first_func(); second_func()">odd or not</button><br><br>
+  </form>
+ 
+
+  
+ </body>
+</html>
+ <script type="text/javascript">
+  function first_func(){
+	  alert("1");
+	  }
+	  function second_func(){
+		  alert("2");
+		  }
+</script>

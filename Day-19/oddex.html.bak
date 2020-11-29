@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>find even or odd</title>
+  <script type="text/javascript" src="mainMethodEx.js"></script>
+ </head>
+ <body>
+ <form method="post" acton="">
+ 	<label>enter your number: </label>
+	<input type="number" id="input_num">
+	<button type="submit" onclick="odd_even(); prime();">odd or not</button><br><br>
+	//<button type="submit" onclick="prime();">prime or not.</button>
+	</form>
+	<script>
+	 //odd_even();
+	
+	</script>
+	
+	<p id="demo"></p>
+
+  
+ </body>
+</html>
