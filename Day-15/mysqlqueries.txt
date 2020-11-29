@@ -1,0 +1,340 @@
+Microsoft Windows [Version 10.0.19041.630]
+(c) 2020 Microsoft Corporation. All rights reserved.
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: ****************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 22
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.01 sec)
+
+
+mysql> use studentdb;
+Database changed
+
+mysql> use venkydb
+Database changed
+mysql> create table student(sid int,sname varchar(30),saddress varchar(40));
+Query OK, 0 rows affected (1.76 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_venkydb |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| sid      | int         | YES  |     | NULL    |       |
+| sname    | varchar(30) | YES  |     | NULL    |       |
+| saddress | varchar(40) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> alter table student add(sdob date);
+Query OK, 0 rows affected (0.80 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| sid      | int         | YES  |     | NULL    |       |
+| sname    | varchar(30) | YES  |     | NULL    |       |
+| saddress | varchar(40) | YES  |     | NULL    |       |
+| sdob     | date        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> alter table student drop sdob;
+Query OK, 0 rows affected (1.78 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| sid      | int         | YES  |     | NULL    |       |
+| sname    | varchar(30) | YES  |     | NULL    |       |
+| saddress | varchar(40) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.15 sec)
+
+
+mysql> alter table student rename column sname to stdname;
+Query OK, 0 rows affected (1.36 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| sid      | int         | YES  |     | NULL    |       |
+| stdname  | varchar(30) | YES  |     | NULL    |       |
+| saddress | varchar(40) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> alter table student modify column stdname text;
+Query OK, 0 rows affected (1.90 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| sid      | int         | YES  |     | NULL    |       |
+| stdname  | text        | YES  |     | NULL    |       |
+| saddress | varchar(40) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> select * from student;
+Empty set (0.00 sec)
+
+mysql> insert into student values(56,'gk','uk');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select * from student;
++------+---------+----------+
+| sid  | stdname | saddress |
++------+---------+----------+
+|   56 | gk      | uk       |
++------+---------+----------+
+1 row in set (0.07 sec)
+
+mysql> truncate table student;
+Query OK, 0 rows affected (1.52 sec)
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| sid      | int         | YES  |     | NULL    |       |
+| stdname  | text        | YES  |     | NULL    |       |
+| saddress | varchar(40) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.14 sec)
+
+mysql> drop table student;
+Query OK, 0 rows affected (0.98 sec)
+
+
+mysql> create table employee(eid int,ename varchar(40),eadd varchar(40),esal float,edob date);
+Query OK, 0 rows affected (1.23 sec)
+
+mysql> desc employee;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| eid   | int         | YES  |     | NULL    |       |
+| ename | varchar(40) | YES  |     | NULL    |       |
+| eadd  | varchar(40) | YES  |     | NULL    |       |
+| esal  | float       | YES  |     | NULL    |       |
+| edob  | date        | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.15 sec)
+
+mysql> insert into employee values(420,'pk','USA',45000,'1991-03-12');
+Query OK, 1 row affected (0.16 sec)
+
+mysql> select * from employee;
++------+-------+------+-------+------------+
+| eid  | ename | eadd | esal  | edob       |
++------+-------+------+-------+------------+
+|  420 | pk    | USA  | 45000 | 1991-03-12 |
++------+-------+------+-------+------------+
+1 row in set (0.00 sec)
+
+mysql> create table permanentemployee(peid int,pename varchar(30),peaddress varchar(40),pesal float, pedob date);
+Query OK, 0 rows affected (1.59 sec)
+
+mysql> desc permanentemployee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| peid      | int         | YES  |     | NULL    |       |
+| pename    | varchar(30) | YES  |     | NULL    |       |
+| peaddress | varchar(40) | YES  |     | NULL    |       |
+| pesal     | float       | YES  |     | NULL    |       |
+| pedob     | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.16 sec)
+
+mysql> insert into permanentemployee values(520,'sruthi','vzm',40000,'1999-05-27');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select * from permanentemployee;
++------+--------+-----------+-------+------------+
+| peid | pename | peaddress | pesal | pedob      |
++------+--------+-----------+-------+------------+
+|  520 | sruthi | vzm       | 40000 | 1999-05-27 |
++------+--------+-----------+-------+------------+
+1 row in set (0.02 sec)
+
+mysql> insert into permanentemployee values(630,'madhavi','vzm',25000,'1999-9-17');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into permanentemployee values(499,'venky','vzm',25000,'1999-5-27');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into permanentemployee values(483,'mouni','bobbili',25000,'1999-5-25');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into permanentemployee values(463,'bavana','bobbili',35000,'1999-10-26');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from permanentemployee;
++------+---------+-----------+-------+------------+
+| peid | pename  | peaddress | pesal | pedob      |
++------+---------+-----------+-------+------------+
+|  520 | sruthi  | vzm       | 40000 | 1999-05-27 |
+|  630 | madhavi | vzm       | 25000 | 1999-09-17 |
+|  499 | venky   | vzm       | 25000 | 1999-05-27 |
+|  483 | mouni   | bobbili   | 25000 | 1999-05-25 |
+|  463 | bavana  | bobbili   | 35000 | 1999-10-26 |
++------+---------+-----------+-------+------------+
+5 rows in set (0.04 sec)
+
+mysql> insert into employee values(420,'venky','zzz',60000,'1998-03-28');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select * from employee;
++------+-------+------+-------+------------+
+| eid  | ename | eadd | esal  | edob       |
++------+-------+------+-------+------------+
+|  420 | pk    | USA  | 45000 | 1991-03-12 |
+|  420 | venky | zzz  | 60000 | 1998-03-28 |
++------+-------+------+-------+------------+
+2 rows in set (0.00 sec)
+
+
+mysql> drop table employee;
+Query OK, 0 rows affected (1.71 sec)
+
+mysql> create table employee(eid int primary key ,ename varchar(30),emob bigint unique ,edob date notnull, esal float,check(esal>0),gender varchar(10) default 'male');
+
+mysql> create table employee(eid int primary key ,ename varchar(30),emob bigint unique ,edob date not null, esal float,gender varchar(10) default 'male',check(esal>0));
+Query OK, 0 rows affected (1.60 sec)
+
+mysql> select * from employee;
+Empty set (0.11 sec)
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| eid    | int         | NO   | PRI | NULL    |       |
+| ename  | varchar(30) | YES  |     | NULL    |       |
+| emob   | bigint      | YES  | UNI | NULL    |       |
+| edob   | date        | NO   |     | NULL    |       |
+| esal   | float       | YES  |     | NULL    |       |
+| gender | varchar(10) | YES  |     | male    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.11 sec)
+
+mysql> insert into employee values(20,'venky',9999999,'1999-05-27',25000,'female');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select * from employee;
++-----+-------+---------+------------+-------+--------+
+| eid | ename | emob    | edob       | esal  | gender |
++-----+-------+---------+------------+-------+--------+
+|  20 | venky | 9999999 | 1999-05-27 | 25000 | female |
++-----+-------+---------+------------+-------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into employee values(21,'pinky',9999988,'1999-05-23',25000,'female');
+Query OK, 1 row affected (0.22 sec)
+
+mysql> insert into employee values(22,'mouni',8989988,'1999-06-23',23000,'female');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from employee;
++-----+-------+---------+------------+-------+--------+
+| eid | ename | emob    | edob       | esal  | gender |
++-----+-------+---------+------------+-------+--------+
+|  20 | venky | 9999999 | 1999-05-27 | 25000 | female |
+|  21 | pinky | 9999988 | 1999-05-23 | 25000 | female |
+|  22 | mouni | 8989988 | 1999-06-23 | 23000 | female |
++-----+-------+---------+------------+-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> create permanent_employee(eid int ,noofhours float,position varchar(30),foreign key(eid) references employee(eid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'permanent_employee(eid int ,noofhours float,position varchar(30),foreign key(eid' at line 1
+mysql> create table  permanent_employee(eid int ,noofhours float,position varchar(30),foreign key(eid) references employee(eid));
+Query OK, 0 rows affected (2.81 sec)
+
+mysql> insert into permanent_employee(20,9,'software engineer');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '20,9,'software engineer')' at line 1
+mysql> desc permanent_employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| eid       | int         | YES  | MUL | NULL    |       |
+| noofhours | float       | YES  |     | NULL    |       |
+| position  | varchar(30) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.11 sec)
+
+mysql> insert into permanent_employee(20,9.0,'software engineer');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '20,9.0,'software engineer')' at line 1
+mysql> insert into permanent_employee(20,'9','software engineer');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '20,'9','software engineer')' at line 1
+mysql> insert into permanent_employee values(20,9,'software engineer');
+Query OK, 1 row affected (0.16 sec)
+
+mysql> insert into permanent_employee values(21,9,'software engineer');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into permanent_employee values(22,9,'testing');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into permanent_employee values(20,9,'testing');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from permanent_employee;
++------+-----------+-------------------+
+| eid  | noofhours | position          |
++------+-----------+-------------------+
+|   20 |         9 | software engineer |
+|   21 |         9 | software engineer |
+|   22 |         9 | testing           |
+|   20 |         9 | testing           |
++------+-----------+-------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-----+-------+---------+------------+-------+--------+
+| eid | ename | emob    | edob       | esal  | gender |
++-----+-------+---------+------------+-------+--------+
+|  20 | venky | 9999999 | 1999-05-27 | 25000 | female |
+|  21 | pinky | 9999988 | 1999-05-23 | 25000 | female |
+|  22 | mouni | 8989988 | 1999-06-23 | 23000 | female |
++-----+-------+---------+------------+-------+--------+
+3 rows in set (0.45 sec)
+
+mysql>

@@ -1,0 +1,470 @@
+Microsoft Windows [Version 10.0.18363.1198]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\hello>mysql -u root -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 29
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| accountinfo        |
+| customersinfo      |
+| customesinfo       |
+| employee           |
+| information_schema |
+| mysql              |
+| onlinefoodordering |
+| performance_schema |
+| sys                |
+| task_backup        |
++--------------------+
+10 rows in set (1.13 sec)
+
+mysql> use accountinfo;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_accountinfo |
++-----------------------+
+| accountinfor          |
+| custo                 |
+| emp                   |
+| transacid             |
++-----------------------+
+4 rows in set (0.17 sec)
+
+mysql> use customersinfo;
+Database changed
+mysql> show tables;
++-------------------------+
+| Tables_in_customersinfo |
++-------------------------+
+| customersinfo           |
++-------------------------+
+1 row in set (0.04 sec)
+
+mysql> desc emp;
+ERROR 1146 (42S02): Table 'customersinfo.emp' doesn't exist
+mysql> use accountinfo;
+Database changed
+mysql> desc emp;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| empid       | int         | NO   | PRI | NULL    | auto_increment |
+| firstname   | varchar(10) | YES  |     | NULL    |                |
+| lastname    | varchar(10) | YES  |     | NULL    |                |
+| email       | varchar(30) | YES  |     | NULL    |                |
+| mobileno    | int         | YES  | UNI | NULL    |                |
+| hiredate    | date        | YES  |     | NULL    |                |
+| jobid       | int         | YES  |     | NULL    |                |
+| salary      | float       | YES  |     | NULL    |                |
+| reporter    | varchar(10) | YES  |     | NULL    |                |
+| depid       | int         | YES  | UNI | NULL    |                |
+| department  | varchar(10) | YES  |     | NULL    |                |
+| designation | varchar(10) | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+12 rows in set (0.09 sec)
+
+mysql> show darabases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'darabases' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| accountinfo        |
+| customersinfo      |
+| customesinfo       |
+| employee           |
+| information_schema |
+| mysql              |
+| onlinefoodordering |
+| performance_schema |
+| sys                |
+| task_backup        |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use onlinefoodordering;
+Database changed
+mysql> show tables;
++------------------------------+
+| Tables_in_onlinefoodordering |
++------------------------------+
+| customers                    |
+| ordermenus                   |
+| orders                       |
+| restaurants                  |
+| rmenuitems                   |
++------------------------------+
+5 rows in set (0.01 sec)
+
+mysql> desc restaurants;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| restaurantid   | int         | NO   | PRI | NULL    | auto_increment |
+| restauarntname | varchar(29) | YES  |     | NULL    |                |
+| restaurantaddr | varchar(30) | YES  |     | NULL    |                |
+| contactno      | int         | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from restaurants where restaurantaddr='hyd';
+Empty set (0.00 sec)
+
+mysql> select * from restaurants where restaurantaddr='ind';
++--------------+----------------+----------------+-----------+
+| restaurantid | restauarntname | restaurantaddr | contactno |
++--------------+----------------+----------------+-----------+
+|            1 | a              | ind            |     12345 |
+|            2 | b              | ind            |      1125 |
+|            3 | c              | ind            |      1901 |
+|            4 | d              | ind            |      1902 |
+|            5 | ed             | ind            |      1903 |
+|            6 | f              | ind            |      1904 |
++--------------+----------------+----------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from restaurants,ordermenus;
+Empty set (0.11 sec)
+
+mysql> select * from orders;
+Empty set (0.12 sec)
+
+mysql> select * from ordermenu;
+ERROR 1146 (42S02): Table 'onlinefoodordering.ordermenu' doesn't exist
+mysql> select * from ordermenus;
+Empty set (0.00 sec)
+
+mysql> select * from rmenuitems;
++--------+--------+----------+----------+--------------+-----------+----------+
+| menuid | restid | menuname | menutype | menucategory | menuprice | menudesc |
++--------+--------+----------+----------+--------------+-----------+----------+
+|      1 |      1 | spl      | veg      | adl          |       600 | pure veg |
+|      2 |      2 | spl      | veg      | adl          |       600 | pure veg |
+|      3 |      3 | spl      | veg      | nadl         |       900 | pure veg |
+|      4 |      4 | ordspl   | nonveg   | intopll      |       900 | non veg  |
+|      5 |      5 | ordspl   | nonveg   | intopll      |      9100 | non veg  |
++--------+--------+----------+----------+--------------+-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> desc customers;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| customerid       | int         | NO   | PRI | NULL    |       |
+| customername     | varchar(10) | YES  |     | NULL    |       |
+| customericty     | varchar(10) | YES  |     | NULL    |       |
+| customerdob      | date        | YES  |     | NULL    |       |
+| customergender   | varchar(6)  | YES  |     |  male   |       |
+| customerpassword | varchar(13) | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into customers (customerid,customername,customercity,customerdob,customergender,customerpassword) values(100,'e','uk','1990-10-22','male','eoi');
+ERROR 1054 (42S22): Unknown column 'customercity' in 'field list'
+mysql> insert into customers (customerid,customername,customericty,customerdob,customergender,customerpassword) values(100,'e','uk','1990-10-22','male','eoi');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into customers (customerid,customername,customericty,customerdob,customergender,customerpassword) values(110,'ef','uae','1990-11-22','male','etoi');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into customers (customerid,customername,customericty,customerdob,customergender,customerpassword) values(210,'egf','usa','1991-11-22','female','ndiai');
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into customers (customerid,customername,customericty,customerdob,customergender,customerpassword) values(211,'egfh','ind','1993-11-22','female','india');
+Query OK, 1 row affected (0.21 sec)
+
+mysql> insert into customers (customerid,customername,customericty,customerdob,customergender,customerpassword) values(209,'egfi','ind','1994-11-22','female','india');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select *from customers;
++------------+--------------+--------------+-------------+----------------+------------------+
+| customerid | customername | customericty | customerdob | customergender | customerpassword |
++------------+--------------+--------------+-------------+----------------+------------------+
+|        100 | e            | uk           | 1990-10-22  | male           | eoi              |
+|        110 | ef           | uae          | 1990-11-22  | male           | etoi             |
+|        209 | egfi         | ind          | 1994-11-22  | female         | india            |
+|        210 | egf          | usa          | 1991-11-22  | female         | ndiai            |
+|        211 | egfh         | ind          | 1993-11-22  | female         | india            |
++------------+--------------+--------------+-------------+----------------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table orders(
+    -> ^C
+mysql> desc orders;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| orderid      | int         | NO   | PRI | NULL    |       |
+| customid     | int         | YES  | MUL | NULL    |       |
+| orderdate    | date        | YES  |     | NULL    |       |
+| delievryaddr | varchar(10) | YES  |     | NULL    |       |
+| orderstatus  | varchar(10) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.12 sec)
+
+mysql> show tables;
++------------------------------+
+| Tables_in_onlinefoodordering |
++------------------------------+
+| customers                    |
+| ordermenus                   |
+| orders                       |
+| restaurants                  |
+| rmenuitems                   |
++------------------------------+
+5 rows in set (0.89 sec)
+
+mysql> select *from orders;
+Empty set (0.17 sec)
+
+mysql> show tables;
++------------------------------+
+| Tables_in_onlinefoodordering |
++------------------------------+
+| customers                    |
+| ordermenus                   |
+| orders                       |
+| restaurants                  |
+| rmenuitems                   |
++------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select *from customers;
++------------+--------------+--------------+-------------+----------------+------------------+
+| customerid | customername | customericty | customerdob | customergender | customerpassword |
++------------+--------------+--------------+-------------+----------------+------------------+
+|        100 | e            | uk           | 1990-10-22  | male           | eoi              |
+|        110 | ef           | uae          | 1990-11-22  | male           | etoi             |
+|        209 | egfi         | ind          | 1994-11-22  | female         | india            |
+|        210 | egf          | usa          | 1991-11-22  | female         | ndiai            |
+|        211 | egfh         | ind          | 1993-11-22  | female         | india            |
++------------+--------------+--------------+-------------+----------------+------------------+
+5 rows in set (0.01 sec)
+
+mysql> select *from ordermenus;
+Empty set (0.09 sec)
+
+mysql> desc ordermenus;
++-----------+-------+------+-----+---------+-------+
+| Field     | Type  | Null | Key | Default | Extra |
++-----------+-------+------+-----+---------+-------+
+| orderids  | int   | YES  | MUL | NULL    |       |
+| menuid    | int   | YES  | MUL | NULL    |       |
+| menuqty   | int   | YES  |     | NULL    |       |
+| menuprice | float | YES  |     | NULL    |       |
++-----------+-------+------+-----+---------+-------+
+4 rows in set (0.16 sec)
+
+mysql> insert into ordermenus(1,1,3,800);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,1,3,800)' at line 1
+mysql>
+mysql> descorders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'descorders' at line 1
+mysql> desc orders;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| orderid      | int         | NO   | PRI | NULL    |       |
+| customid     | int         | YES  | MUL | NULL    |       |
+| orderdate    | date        | YES  |     | NULL    |       |
+| delievryaddr | varchar(10) | YES  |     | NULL    |       |
+| orderstatus  | varchar(10) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.07 sec)
+
+mysql> select *from customers;
++------------+--------------+--------------+-------------+----------------+------------------+
+| customerid | customername | customericty | customerdob | customergender | customerpassword |
++------------+--------------+--------------+-------------+----------------+------------------+
+|        100 | e            | uk           | 1990-10-22  | male           | eoi              |
+|        110 | ef           | uae          | 1990-11-22  | male           | etoi             |
+|        209 | egfi         | ind          | 1994-11-22  | female         | india            |
+|        210 | egf          | usa          | 1991-11-22  | female         | ndiai            |
+|        211 | egfh         | ind          | 1993-11-22  | female         | india            |
++------------+--------------+--------------+-------------+----------------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into orders(1,100,'2020-11-23','uk','done');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,100,'2020-11-23','uk','done')' at line 1
+mysql> insert into orders values(1,100,'2020-11-23','uk','done');
+Query OK, 1 row affected (0.68 sec)
+
+mysql> insert into orders values(21,110,'2020-11-13','uk','done');
+Query OK, 1 row affected (0.23 sec)
+
+mysql> insert into orders values(23,200,'2020-11-10','uae','done');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`onlinefoodordering`.`orders`, CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customid`) REFERENCES `customers` (`customerid`))
+mysql> insert into orders values(23,209,'2020-11-10','uae','done');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into orders values(23,210,'2020-11-22','uae','done');
+ERROR 1062 (23000): Duplicate entry '23' for key 'orders.PRIMARY'
+mysql> insert into orders values(43,210,'2020-11-22','uae','done');
+Query OK, 1 row affected (0.29 sec)
+
+mysql> insert into orders values(42,211,'2020-11-22','uae','done');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select *from orders;
++---------+----------+------------+--------------+-------------+
+| orderid | customid | orderdate  | delievryaddr | orderstatus |
++---------+----------+------------+--------------+-------------+
+|       1 |      100 | 2020-11-23 | uk           | done        |
+|      21 |      110 | 2020-11-13 | uk           | done        |
+|      23 |      209 | 2020-11-10 | uae          | done        |
+|      42 |      211 | 2020-11-22 | uae          | done        |
+|      43 |      210 | 2020-11-22 | uae          | done        |
++---------+----------+------------+--------------+-------------+
+5 rows in set (0.06 sec)
+
+mysql>
+mysql> desc ordermenus;
++-----------+-------+------+-----+---------+-------+
+| Field     | Type  | Null | Key | Default | Extra |
++-----------+-------+------+-----+---------+-------+
+| orderids  | int   | YES  | MUL | NULL    |       |
+| menuid    | int   | YES  | MUL | NULL    |       |
+| menuqty   | int   | YES  |     | NULL    |       |
+| menuprice | float | YES  |     | NULL    |       |
++-----------+-------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select 8from ordermenus;
+ERROR 1054 (42S22): Unknown column '8from' in 'field list'
+mysql> select *from ordermenus;
+Empty set (0.00 sec)
+
+mysql> insert into ordermenus values(1,1,2,600);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into ordermenus values(21,2,2,600);
+Query OK, 1 row affected (0.20 sec)
+
+mysql> select *from  remnuitems;
+ERROR 1146 (42S02): Table 'onlinefoodordering.remnuitems' doesn't exist
+mysql> select *from Rmenuitems;
++--------+--------+----------+----------+--------------+-----------+----------+
+| menuid | restid | menuname | menutype | menucategory | menuprice | menudesc |
++--------+--------+----------+----------+--------------+-----------+----------+
+|      1 |      1 | spl      | veg      | adl          |       600 | pure veg |
+|      2 |      2 | spl      | veg      | adl          |       600 | pure veg |
+|      3 |      3 | spl      | veg      | nadl         |       900 | pure veg |
+|      4 |      4 | ordspl   | nonveg   | intopll      |       900 | non veg  |
+|      5 |      5 | ordspl   | nonveg   | intopll      |      9100 | non veg  |
++--------+--------+----------+----------+--------------+-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> insert into ordermenus values(23,3,2,1600);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into ordermenus values(43,4,2,1000);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into ordermenus values(42,5,3,5000);
+Query OK, 1 row affected (0.16 sec)
+
+mysql> select *from ordermenus;
++----------+--------+---------+-----------+
+| orderids | menuid | menuqty | menuprice |
++----------+--------+---------+-----------+
+|        1 |      1 |       2 |       600 |
+|       21 |      2 |       2 |       600 |
+|       23 |      3 |       2 |      1600 |
+|       43 |      4 |       2 |      1000 |
+|       42 |      5 |       3 |      5000 |
++----------+--------+---------+-----------+
+5 rows in set (0.12 sec)
+
+mysql> select *from ordermenus where (select *from customers where customername='e');
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select *from ordermenus where (select *from customers where customername='e');
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select *from ordermenus where  orderids=(select *from customers where customername='e');
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select *from Restaurants join Rmenuitems;
++--------------+----------------+----------------+-----------+--------+--------+----------+----------+--------------+-----------+----------+
+| restaurantid | restauarntname | restaurantaddr | contactno | menuid | restid | menuname | menutype | menucategory | menuprice | menudesc |
++--------------+----------------+----------------+-----------+--------+--------+----------+----------+--------------+-----------+----------+
+|            1 | a              | ind            |     12345 |      1 |      1 | spl      | veg      | adl          |       600 | pure veg |
+|            1 | a              | ind            |     12345 |      2 |      2 | spl      | veg      | adl          |       600 | pure veg |
+|            1 | a              | ind            |     12345 |      3 |      3 | spl      | veg      | nadl         |       900 | pure veg |
+|            1 | a              | ind            |     12345 |      4 |      4 | ordspl   | nonveg   | intopll      |       900 | non veg  |
+|            1 | a              | ind            |     12345 |      5 |      5 | ordspl   | nonveg   | intopll      |      9100 | non veg  |
+|            2 | b              | ind            |      1125 |      1 |      1 | spl      | veg      | adl          |       600 | pure veg |
+|            2 | b              | ind            |      1125 |      2 |      2 | spl      | veg      | adl          |       600 | pure veg |
+|            2 | b              | ind            |      1125 |      3 |      3 | spl      | veg      | nadl         |       900 | pure veg |
+|            2 | b              | ind            |      1125 |      4 |      4 | ordspl   | nonveg   | intopll      |       900 | non veg  |
+|            2 | b              | ind            |      1125 |      5 |      5 | ordspl   | nonveg   | intopll      |      9100 | non veg  |
+|            3 | c              | ind            |      1901 |      1 |      1 | spl      | veg      | adl          |       600 | pure veg |
+|            3 | c              | ind            |      1901 |      2 |      2 | spl      | veg      | adl          |       600 | pure veg |
+|            3 | c              | ind            |      1901 |      3 |      3 | spl      | veg      | nadl         |       900 | pure veg |
+|            3 | c              | ind            |      1901 |      4 |      4 | ordspl   | nonveg   | intopll      |       900 | non veg  |
+|            3 | c              | ind            |      1901 |      5 |      5 | ordspl   | nonveg   | intopll      |      9100 | non veg  |
+|            4 | d              | ind            |      1902 |      1 |      1 | spl      | veg      | adl          |       600 | pure veg |
+|            4 | d              | ind            |      1902 |      2 |      2 | spl      | veg      | adl          |       600 | pure veg |
+|            4 | d              | ind            |      1902 |      3 |      3 | spl      | veg      | nadl         |       900 | pure veg |
+|            4 | d              | ind            |      1902 |      4 |      4 | ordspl   | nonveg   | intopll      |       900 | non veg  |
+|            4 | d              | ind            |      1902 |      5 |      5 | ordspl   | nonveg   | intopll      |      9100 | non veg  |
+|            5 | ed             | ind            |      1903 |      1 |      1 | spl      | veg      | adl          |       600 | pure veg |
+|            5 | ed             | ind            |      1903 |      2 |      2 | spl      | veg      | adl          |       600 | pure veg |
+|            5 | ed             | ind            |      1903 |      3 |      3 | spl      | veg      | nadl         |       900 | pure veg |
+|            5 | ed             | ind            |      1903 |      4 |      4 | ordspl   | nonveg   | intopll      |       900 | non veg  |
+|            5 | ed             | ind            |      1903 |      5 |      5 | ordspl   | nonveg   | intopll      |      9100 | non veg  |
+|            6 | f              | ind            |      1904 |      1 |      1 | spl      | veg      | adl          |       600 | pure veg |
+|            6 | f              | ind            |      1904 |      2 |      2 | spl      | veg      | adl          |       600 | pure veg |
+|            6 | f              | ind            |      1904 |      3 |      3 | spl      | veg      | nadl         |       900 | pure veg |
+|            6 | f              | ind            |      1904 |      4 |      4 | ordspl   | nonveg   | intopll      |       900 | non veg  |
+|            6 | f              | ind            |      1904 |      5 |      5 | ordspl   | nonveg   | intopll      |      9100 | non veg  |
++--------------+----------------+----------------+-----------+--------+--------+----------+----------+--------------+-----------+----------+
+30 rows in set (1.34 sec)
+
+mysql> select *from Restaurants join Rmenuitems where restauranticty='ind';
+ERROR 1054 (42S22): Unknown column 'restauranticty' in 'where clause'
+mysql> select *from orders join customers;
++---------+----------+------------+--------------+-------------+------------+--------------+--------------+-------------+----------------+------------------+
+| orderid | customid | orderdate  | delievryaddr | orderstatus | customerid | customername | customericty | customerdob | customergender | customerpassword |
++---------+----------+------------+--------------+-------------+------------+--------------+--------------+-------------+----------------+------------------+
+|       1 |      100 | 2020-11-23 | uk           | done        |        100 | e            | uk           | 1990-10-22  | male           | eoi              |
+|      21 |      110 | 2020-11-13 | uk           | done        |        100 | e            | uk           | 1990-10-22  | male           | eoi              |
+|      23 |      209 | 2020-11-10 | uae          | done        |        100 | e            | uk           | 1990-10-22  | male           | eoi              |
+|      42 |      211 | 2020-11-22 | uae          | done        |        100 | e            | uk           | 1990-10-22  | male           | eoi              |
+|      43 |      210 | 2020-11-22 | uae          | done        |        100 | e            | uk           | 1990-10-22  | male           | eoi              |
+|       1 |      100 | 2020-11-23 | uk           | done        |        110 | ef           | uae          | 1990-11-22  | male           | etoi             |
+|      21 |      110 | 2020-11-13 | uk           | done        |        110 | ef           | uae          | 1990-11-22  | male           | etoi             |
+|      23 |      209 | 2020-11-10 | uae          | done        |        110 | ef           | uae          | 1990-11-22  | male           | etoi             |
+|      42 |      211 | 2020-11-22 | uae          | done        |        110 | ef           | uae          | 1990-11-22  | male           | etoi             |
+|      43 |      210 | 2020-11-22 | uae          | done        |        110 | ef           | uae          | 1990-11-22  | male           | etoi             |
+|       1 |      100 | 2020-11-23 | uk           | done        |        209 | egfi         | ind          | 1994-11-22  | female         | india            |
+|      21 |      110 | 2020-11-13 | uk           | done        |        209 | egfi         | ind          | 1994-11-22  | female         | india            |
+|      23 |      209 | 2020-11-10 | uae          | done        |        209 | egfi         | ind          | 1994-11-22  | female         | india            |
+|      42 |      211 | 2020-11-22 | uae          | done        |        209 | egfi         | ind          | 1994-11-22  | female         | india            |
+|      43 |      210 | 2020-11-22 | uae          | done        |        209 | egfi         | ind          | 1994-11-22  | female         | india            |
+|       1 |      100 | 2020-11-23 | uk           | done        |        210 | egf          | usa          | 1991-11-22  | female         | ndiai            |
+|      21 |      110 | 2020-11-13 | uk           | done        |        210 | egf          | usa          | 1991-11-22  | female         | ndiai            |
+|      23 |      209 | 2020-11-10 | uae          | done        |        210 | egf          | usa          | 1991-11-22  | female         | ndiai            |
+|      42 |      211 | 2020-11-22 | uae          | done        |        210 | egf          | usa          | 1991-11-22  | female         | ndiai            |
+|      43 |      210 | 2020-11-22 | uae          | done        |        210 | egf          | usa          | 1991-11-22  | female         | ndiai            |
+|       1 |      100 | 2020-11-23 | uk           | done        |        211 | egfh         | ind          | 1993-11-22  | female         | india            |
+|      21 |      110 | 2020-11-13 | uk           | done        |        211 | egfh         | ind          | 1993-11-22  | female         | india            |
+|      23 |      209 | 2020-11-10 | uae          | done        |        211 | egfh         | ind          | 1993-11-22  | female         | india            |
+|      42 |      211 | 2020-11-22 | uae          | done        |        211 | egfh         | ind          | 1993-11-22  | female         | india            |
+|      43 |      210 | 2020-11-22 | uae          | done        |        211 | egfh         | ind          | 1993-11-22  | female         | india            |
++---------+----------+------------+--------------+-------------+------------+--------------+--------------+-------------+----------------+------------------+
+25 rows in set (0.04 sec)
+
+mysql>

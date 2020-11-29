@@ -1,0 +1,796 @@
+Microsoft Windows [Version 10.0.18363.1198]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+
+C:\Users\hello
+
+
+
+ 
+
+
+C:\Users\hello>mysql -u root -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.09 sec)
+
+mysql> create table employee (eid int primary key,ename varchar(12),eaddr varchar(15),esalary float);
+ERROR 1046 (3D000): No database selected
+mysql> create database employee;
+Query OK, 1 row affected (2.33 sec)
+
+mysql> use employee;
+Database changed
+mysql> create table employee (eid int primary key,ename varchar(12),eaddr varchar(15),esalary float);
+Query OK, 0 rows affected (6.74 sec)
+
+mysql> desc employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| eid     | int         | NO   | PRI | NULL    |       |
+| ename   | varchar(12) | YES  |     | NULL    |       |
+| eaddr   | varchar(15) | YES  |     | NULL    |       |
+| esalary | float       | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (2.16 sec)
+
+mysql> insert into employee values(12,'pikachu','disneyland',56000.00);
+Query OK, 1 row affected (0.56 sec)
+
+mysql> insert into employee values(112,'doremi','shangai',26000.00);
+Query OK, 1 row affected (0.34 sec)
+
+mysql> insert into employee values(1112,'doremon','shangai',60000.00);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> select *from employee;
++------+---------+------------+---------+
+| eid  | ename   | eaddr      | esalary |
++------+---------+------------+---------+
+|   12 | pikachu | disneyland |   56000 |
+|  112 | doremi  | shangai    |   26000 |
+| 1112 | doremon | shangai    |   60000 |
++------+---------+------------+---------+
+3 rows in set (0.03 sec)
+
+mysql> alter table employee emaiid(varchar(15);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'emaiid(varchar(15)' at line 1
+mysql> alter table employee  column emaiid(varchar(15);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column emaiid(varchar(15)' at line 1
+mysql> alter table employee  add emaiid(varchar(15);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(varchar(15)' at line 1
+mysql> alter table employee  add column emaiid(varchar(15);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(varchar(15)' at line 1
+mysql> alter table employee  add column emaiid(varchar(15));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(varchar(15))' at line 1
+mysql> alter table employee  add column emaiid  varchar(15);
+Query OK, 0 rows affected (2.40 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| eid     | int         | NO   | PRI | NULL    |       |
+| ename   | varchar(12) | YES  |     | NULL    |       |
+| eaddr   | varchar(15) | YES  |     | NULL    |       |
+| esalary | float       | YES  |     | NULL    |       |
+| emaiid  | varchar(15) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.12 sec)
+
+mysql> select *from employee;
++------+---------+------------+---------+--------+
+| eid  | ename   | eaddr      | esalary | emaiid |
++------+---------+------------+---------+--------+
+|   12 | pikachu | disneyland |   56000 | NULL   |
+|  112 | doremi  | shangai    |   26000 | NULL   |
+| 1112 | doremon | shangai    |   60000 | NULL   |
++------+---------+------------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee rename emaiid as emailid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as emailid' at line 1
+mysql> alter table employee rename column emaiid as emailid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as emailid' at line 1
+mysql> alter table employee rename column emaiid to emailid;
+Query OK, 0 rows affected (0.21 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into employee values(11,'sri','gnt',350000,'sri@database.com');
+ERROR 1406 (22001): Data too long for column 'emailid' at row 1
+mysql> insert into employee values(11,'sri','gnt',350000,'sri@se.com');
+Query OK, 1 row affected (0.15 sec)
+
+mysql> select *from employee;
++------+---------+------------+---------+------------+
+| eid  | ename   | eaddr      | esalary | emailid    |
++------+---------+------------+---------+------------+
+|   11 | sri     | gnt        |  350000 | sri@se.com |
+|   12 | pikachu | disneyland |   56000 | NULL       |
+|  112 | doremi  | shangai    |   26000 | NULL       |
+| 1112 | doremon | shangai    |   60000 | NULL       |
++------+---------+------------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> create table permannentemploy(eid int,noofhours float,position varchar(12),foreign key(eid) references employee(eid));
+Query OK, 0 rows affected (1.77 sec)
+
+mysql> select *from employee;
++------+---------+------------+---------+------------+
+| eid  | ename   | eaddr      | esalary | emailid    |
++------+---------+------------+---------+------------+
+|   11 | sri     | gnt        |  350000 | sri@se.com |
+|   12 | pikachu | disneyland |   56000 | NULL       |
+|  112 | doremi  | shangai    |   26000 | NULL       |
+| 1112 | doremon | shangai    |   60000 | NULL       |
++------+---------+------------+---------+------------+
+4 rows in set (0.02 sec)
+
+mysql> select *from permannentemploy;
+Empty set (0.06 sec)
+
+mysql> insert into permannentemploy(11,9,'engineer');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '11,9,'engineer')' at line 1
+mysql> insert into permannentemploy(12,9,'engineer');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '12,9,'engineer')' at line 1
+mysql> delete from employee where eid=11;
+Query OK, 1 row affected (0.25 sec)
+
+mysql> select *from employee;
++------+---------+------------+---------+---------+
+| eid  | ename   | eaddr      | esalary | emailid |
++------+---------+------------+---------+---------+
+|   12 | pikachu | disneyland |   56000 | NULL    |
+|  112 | doremi  | shangai    |   26000 | NULL    |
+| 1112 | doremon | shangai    |   60000 | NULL    |
++------+---------+------------+---------+---------+
+3 rows in set (0.01 sec)
+
+mysql> alter table emloyee modify eid int AUTO-INCREMENT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AUTO-INCREMENT' at line 1
+mysql> ALTER TABLE EMPLOYEE MODIFY EID INT AUTO-INCREMENT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AUTO-INCREMENT' at line 1
+mysql> CREATE INDEX IND ON EMPLOYEE(EID);
+Query OK, 0 rows affected (2.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT *FROM EMPLOYEE;
++------+---------+------------+---------+---------+
+| eid  | ename   | eaddr      | esalary | emailid |
++------+---------+------------+---------+---------+
+|   12 | pikachu | disneyland |   56000 | NULL    |
+|  112 | doremi  | shangai    |   26000 | NULL    |
+| 1112 | doremon | shangai    |   60000 | NULL    |
++------+---------+------------+---------+---------+
+3 rows in set (0.07 sec)
+
+mysql> show dabases;> d:list.txt;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dabases' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '> d:list.txt' at line 1
+mysql> create database task_backup;
+Query OK, 1 row affected (0.18 sec)
+
+
+C:\Users\hello>Microsoft Windows [Version 10.0.18363.1198]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\hello>mysql
+'mysql' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\hello>mysql -u root -p
+'mysql' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\hello>cd
+C:\Users\hello
+
+C:\Users\hello>cd C:\Program Files\MySQL\MySQL Shell 8.0\bin
+
+C:\Program Files\MySQL\MySQL Shell 8.0\bin>mysql -u root -p
+'mysql' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Program Files\MySQL\MySQL Shell 8.0\bin>mysql -u root -p
+'mysql' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Program Files\MySQL\MySQL Shell 8.0\bin>cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SELECT ASCII('2');
++------------+
+| ASCII('2') |
++------------+
+|         50 |
++------------+
+1 row in set (0.05 sec)
+
+mysql> SELECT ASCII('SRI');
++--------------+
+| ASCII('SRI') |
++--------------+
+|           83 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> BIN(12);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIN(12)' at line 1
+mysql> SELECT BIN(12);;
++---------+
+| BIN(12) |
++---------+
+| 1100    |
++---------+
+1 row in set (0.03 sec)
+
+ERROR:
+No query specified
+
+mysql> SELECT BIT_LENGTH('SRI');
++-------------------+
+| BIT_LENGTH('SRI') |
++-------------------+
+|                24 |
++-------------------+
+1 row in set (0.06 sec)
+
+mysql> SELECT CHAR(77,121,83,81,'76');
++--------------------------------------------------+
+| CHAR(77,121,83,81,'76')                          |
++--------------------------------------------------+
+| 0x4D7953514C                                     |
++--------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CHAR_LENGTH("text");
++---------------------+
+| CHAR_LENGTH("text") |
++---------------------+
+|                   4 |
++---------------------+
+1 row in set (0.02 sec)
+
+mysql> SQL> SELECT CONCAT('My', 'S', 'QL');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SQL> SELECT CONCAT('My', 'S', 'QL')' at line 1
+mysql>  SELECT CONCAT('My', 'S', 'QL');
++-------------------------+
+| CONCAT('My', 'S', 'QL') |
++-------------------------+
+| MySQL                   |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> SQL> SELECT CONCAT_WS(',','First name','Last Name' );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SQL> SELECT CONCAT_WS(',','First name','Last Name' )' at line 1
+mysql>  SELECT CONCAT_WS(',','First name','Last Name' );
++------------------------------------------+
+| CONCAT_WS(',','First name','Last Name' ) |
++------------------------------------------+
+| First name,Last Name                     |
++------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CONV('a',16,2);
++----------------+
+| CONV('a',16,2) |
++----------------+
+| 1010           |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ELT(3,'S','R','I');
++--------------------+
+| ELT(3,'S','R','I') |
++--------------------+
+| I                  |
++--------------------+
+1 row in set (0.06 sec)
+
+mysql> SELECT FIND_IN_SET('b','a,b,c,d');
++----------------------------+
+| FIND_IN_SET('b','a,b,c,d') |
++----------------------------+
+|                          2 |
++----------------------------+
+1 row in set (0.02 sec)
+
+mysql> SELECT FIELD('S','V','A','P','BFF');
++------------------------------+
+| FIELD('S','V','A','P','BFF') |
++------------------------------+
+|                            0 |
++------------------------------+
+1 row in set (0.06 sec)
+
+mysql> SELECT FORMAT(12332.123456, 4);
++-------------------------+
+| FORMAT(12332.123456, 4) |
++-------------------------+
+| 12,332.1235             |
++-------------------------+
+1 row in set (0.06 sec)
+
+mysql> SELECT FORMAT(12332.123456, 4);
++-------------------------+
+| FORMAT(12332.123456, 4) |
++-------------------------+
+| 12,332.1235             |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT HEX(255);
++----------+
+| HEX(255) |
++----------+
+| FF       |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT INSERT('Quadratic', 3, 4, 'What');
++-----------------------------------+
+| INSERT('Quadratic', 3, 4, 'What') |
++-----------------------------------+
+| QuWhattic                         |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT INSTR('foobarbar', 'bar');
++---------------------------+
+| INSTR('foobarbar', 'bar') |
++---------------------------+
+|                         4 |
++---------------------------+
+1 row in set (0.05 sec)
+
+mysql> SELECT LEFT('foobarbar', 5);
++----------------------+
+| LEFT('foobarbar', 5) |
++----------------------+
+| fooba                |
++----------------------+
+1 row in set (0.00 sec)
+Microsoft Windows [Version 10.0.18363.1198]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\hello>cd C:\Program Files\MySQL\MySQL Server 8.0\bin;
+The system cannot find the path specified.
+
+C:\Users\hello>cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SELECT LOWER('PIKACHU');
++------------------+
+| LOWER('PIKACHU') |
++------------------+
+| pikachu          |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT LPAD('hi',4,'??');
++-------------------+
+| LPAD('hi',4,'??') |
++-------------------+
+| ??hi              |
++-------------------+
+1 row in set (0.07 sec)
+
+mysql> SELECT LTRIM('  barbar');
++-------------------+
+| LTRIM('  barbar') |
++-------------------+
+| barbar            |
++-------------------+
+1 row in set (0.04 sec)
+
+mysql> SELECT MAKE_SET(1,'a','b','c');
++-------------------------+
+| MAKE_SET(1,'a','b','c') |
++-------------------------+
+| a                       |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT OCT(12);
++---------+
+| OCT(12) |
++---------+
+| 14      |
++---------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ORD('2');
++----------+
+| ORD('2') |
++----------+
+|       50 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SQL> SELECT QUOTE('Don\'t!');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SQL> SELECT QUOTE('Don\'t!')' at line 1
+mysql>  SELECT QUOTE('Don\'t!');
++------------------+
+| QUOTE('Don\'t!') |
++------------------+
+| 'Don\'t!'        |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT REPEAT('SQL', 3);
++------------------+
+| REPEAT('SQL', 3) |
++------------------+
+| SQLSQLSQL        |
++------------------+
+1 row in set (0.03 sec)
+
+mysql> SELECT REPLACE('WEWE.WOEKOK','K','0000');
++-----------------------------------+
+| REPLACE('WEWE.WOEKOK','K','0000') |
++-----------------------------------+
+| WEWE.WOE0000O0000                 |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql>  SELECT REVERSE('abcd');
++-----------------+
+| REVERSE('abcd') |
++-----------------+
+| dcba            |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql>  SELECT RTRIM('barbar   ');
++--------------------+
+| RTRIM('barbar   ') |
++--------------------+
+| barbar             |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SOUNDEX('Hello');
++------------------+
+| SOUNDEX('Hello') |
++------------------+
+| H400             |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT STRCMP('MOHD', 'AMOHD');
++-------------------------+
+| STRCMP('MOHD', 'AMOHD') |
++-------------------------+
+|                       1 |
++-------------------------+
+1 row in set (0.02 sec)
+
+mysql>  SELECT SPACE(6);
++----------+
+| SPACE(6) |
++----------+
+|          |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT SUBSTRING('Quadratically',5);
++------------------------------+
+| SUBSTRING('Quadratically',5) |
++------------------------------+
+| ratically                    |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT TRIM(LEADING 'x' FROM 'xxxbarxxx');
++------------------------------------+
+| TRIM(LEADING 'x' FROM 'xxxbarxxx') |
++------------------------------------+
+| barxxx                             |
++------------------------------------+
+1 row in set (0.02 sec)
+
+mysql> SELECT UNHEX('4D7953514C');
++------------------------------------------+
+| UNHEX('4D7953514C')                      |
++------------------------------------------+
+| 0x4D7953514C                             |
++------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT UPPER('PIKACHU');
++------------------+
+| UPPER('PIKACHU') |
++------------------+
+| PIKACHU          |
++------------------+
+1 row in set (0.02 sec)
+
+mysql>Microsoft Windows [Version 10.0.18363.1198]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\hello>cd C:\Program Files\MySQL\MySQL Server 8.0\bin;
+The system cannot find the path specified.
+
+C:\Users\hello>cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SELECT LOWER('PIKACHU');
++------------------+
+| LOWER('PIKACHU') |
++------------------+
+| pikachu          |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT LPAD('hi',4,'??');
++-------------------+
+| LPAD('hi',4,'??') |
++-------------------+
+| ??hi              |
++-------------------+
+1 row in set (0.07 sec)
+
+mysql> SELECT LTRIM('  barbar');
++-------------------+
+| LTRIM('  barbar') |
++-------------------+
+| barbar            |
++-------------------+
+1 row in set (0.04 sec)
+
+mysql> SELECT MAKE_SET(1,'a','b','c');
++-------------------------+
+| MAKE_SET(1,'a','b','c') |
++-------------------------+
+| a                       |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT OCT(12);
++---------+
+| OCT(12) |
++---------+
+| 14      |
++---------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ORD('2');
++----------+
+| ORD('2') |
++----------+
+|       50 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SQL> SELECT QUOTE('Don\'t!');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SQL> SELECT QUOTE('Don\'t!')' at line 1
+mysql>  SELECT QUOTE('Don\'t!');
++------------------+
+| QUOTE('Don\'t!') |
++------------------+
+| 'Don\'t!'        |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT REPEAT('SQL', 3);
++------------------+
+| REPEAT('SQL', 3) |
++------------------+
+| SQLSQLSQL        |
++------------------+
+1 row in set (0.03 sec)
+
+mysql> SELECT REPLACE('WEWE.WOEKOK','K','0000');
++-----------------------------------+
+| REPLACE('WEWE.WOEKOK','K','0000') |
++-----------------------------------+
+| WEWE.WOE0000O0000                 |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql>  SELECT REVERSE('abcd');
++-----------------+
+| REVERSE('abcd') |
++-----------------+
+| dcba            |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql>  SELECT RTRIM('barbar   ');
++--------------------+
+| RTRIM('barbar   ') |
++--------------------+
+| barbar             |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SOUNDEX('Hello');
++------------------+
+| SOUNDEX('Hello') |
++------------------+
+| H400             |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT STRCMP('MOHD', 'AMOHD');
++-------------------------+
+| STRCMP('MOHD', 'AMOHD') |
++-------------------------+
+|                       1 |
++-------------------------+
+1 row in set (0.02 sec)
+
+mysql>  SELECT SPACE(6);
++----------+
+| SPACE(6) |
++----------+
+|          |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT SUBSTRING('Quadratically',5);
++------------------------------+
+| SUBSTRING('Quadratically',5) |
++------------------------------+
+| ratically                    |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT TRIM(LEADING 'x' FROM 'xxxbarxxx');
++------------------------------------+
+| TRIM(LEADING 'x' FROM 'xxxbarxxx') |
++------------------------------------+
+| barxxx                             |
++------------------------------------+
+1 row in set (0.02 sec)
+
+mysql> SELECT UNHEX('4D7953514C');
++------------------------------------------+
+| UNHEX('4D7953514C')                      |
++------------------------------------------+
+| 0x4D7953514C                             |
++------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT UPPER('PIKACHU');
++------------------+
+| UPPER('PIKACHU') |
++------------------+
+| PIKACHU          |
++------------------+
+1 row in set (0.02 sec)
+
+mysql> SELECT RPAD('geeks', 8, '0');
++-----------------------+
+| RPAD('geeks', 8, '0') |
++-----------------------+
+| geeks000              |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CURTIME();
++-----------+
+| CURTIME() |
++-----------+
+| 19:28:54  |
++-----------+
+1 row in set (0.03 sec)
+
+mysql> SELECT CURDATE();
++------------+
+| CURDATE()  |
++------------+
+| 2020-11-22 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CURDATE();
++------------+
+| CURDATE()  |
++------------+
+| 2020-11-22 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT(NOW(),'%d %b %y')
+    -> ;
++-------------------------------+
+| DATE_FORMAT(NOW(),'%d %b %y') |
++-------------------------------+
+| 22 Nov 20                     |
++-------------------------------+
+1 row in set (0.39 sec)
+
+mysql> SELECT SQRT(100);
++-----------+
+| SQRT(100) |
++-----------+
+|        10 |
++-----------+
+1 row in set (0.06 sec)
+
+mysql> SELECT SQUARE(12);
+ERROR 1046 (3D000): No database selected
+mysql> SELECT SQUARE(25);
+ERROR 1046 (3D000): No database selected
+mysql> SELECT CEILING(23.986);
++-----------------+
+| CEILING(23.986) |
++-----------------+
+|              24 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT FLOOR(2737.92I9);
+ERROR 1583 (42000): Incorrect parameters in the call to native function 'floor'
+mysql> SELECT FLOOR(2737.929);
++-----------------+
+| FLOOR(2737.929) |
++-----------------+
+|            2737 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql>
+   .

@@ -1,0 +1,5 @@
+ update emp set salary=34000 where empid=161;
+update emp set salary=45000 where empid=162;
+update emp set salary=50000 where empid=163;
+ update emp set salary=60000 where empid=164;
+ update emp set salary=65000 where empid=165;

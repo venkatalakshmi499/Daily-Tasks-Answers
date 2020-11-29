@@ -1,0 +1,1009 @@
+Microsoft Windows [Version 10.0.18363.1198]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\hello>mysql -u root -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 28
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| accountinfo        |
+| customersinfo      |
+| customesinfo       |
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| task_backup        |
++--------------------+
+9 rows in set (0.24 sec)
+
+mysql> use accountinfo;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_accountinfo |
++-----------------------+
+| accountinfor          |
+| transacid             |
++-----------------------+
+2 rows in set (0.15 sec)
+
+mysql> select *from transacid;
++-------+-----------+
+| traid | transtype |
++-------+-----------+
+|     1 | credited  |
+|     2 | debited   |
++-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> create table emp(empid int primary key,firstname varchar(10),lastname varchar(10),email varchar(30),mobileno int unique key,hiredate date,jobid int );
+Query OK, 0 rows affected (2.38 sec)
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| empid     | int         | NO   | PRI | NULL    |       |
+| firstname | varchar(10) | YES  |     | NULL    |       |
+| lastname  | varchar(10) | YES  |     | NULL    |       |
+| email     | varchar(30) | YES  |     | NULL    |       |
+| mobileno  | int         | YES  | UNI | NULL    |       |
+| hiredate  | date        | YES  |     | NULL    |       |
+| jobid     | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.23 sec)
+
+mysql> alter table emp modify empid int AUTO_INCREMENT;
+Query OK, 0 rows affected (4.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp values(1,'s','r','duh@i.in',84384398,'2020-10-22',38837);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into emp(firstname,lastname,email,mobileno,hiredate,jobid) values('rs','ir','duyth@i.in',77684398,'2020-10-22',3677);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into emp(firstname,lastname,email,mobileno,hiredate,jobid) values('rst','ire','detfth@i.in',263671,'2020-10-22',45677);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> insert into emp(firstname,lastname,email,mobileno,hiredate,jobid) values('rstyu','oe','deh@i.in',2661,'2020-10-22',457);5677);
+Query OK, 1 row affected (0.24 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '5677)' at line 1
+mysql> insert into emp(firstname,lastname,email,mobileno,hiredate,jobid) values('rstyu','oe','deh@i.in',2661,'2020-10-22',5677);
+ERROR 1062 (23000): Duplicate entry '2661' for key 'emp.mobileno'
+mysql> insert into emp(firstname,lastname,email,mobileno,hiredate,jobid) values('rstyu','oe','deh@i.in',1321,'2020-10-22',5677);
+Query OK, 1 row affected (0.24 sec)
+
+mysql> insert into emp(firstname,lastname,email,mobileno,hiredate,jobid) values('rsotyu','oep','dtyy@i.in',1111,'2020-10-22',587);
+Query OK, 1 row affected (0.28 sec)
+
+mysql> select *from emp;
++-------+-----------+----------+-------------+----------+------------+-------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid |
++-------+-----------+----------+-------------+----------+------------+-------+
+|     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |
+|     6 | rstyu     | oe       | deh@i.in    |     1321 | 2020-10-22 |  5677 |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |
++-------+-----------+----------+-------------+----------+------------+-------+
+6 rows in set (0.05 sec)
+
+mysql> alter table emp add salary float;
+Query OK, 0 rows affected (1.66 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp(salary) values(45000);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select *from emp;
++-------+-----------+----------+-------------+----------+------------+-------+--------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary |
++-------+-----------+----------+-------------+----------+------------+-------+--------+
+|     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |   NULL |
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |   NULL |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |   NULL |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |   NULL |
+|     6 | rstyu     | oe       | deh@i.in    |     1321 | 2020-10-22 |  5677 |   NULL |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |   NULL |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 |
++-------+-----------+----------+-------------+----------+------------+-------+--------+
+7 rows in set (0.00 sec)
+
+mysql> insert into emp(empid,salary) values(1,340000);
+ERROR 1062 (23000): Duplicate entry '1' for key 'emp.PRIMARY'
+mysql> update emp set esalary=34000 where empid=1;
+ERROR 1054 (42S22): Unknown column 'esalary' in 'field list'
+mysql> update emp set salary=34000 where empid=1;
+Query OK, 1 row affected (0.18 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update emp set salary=45000 where empid=2;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update emp set salary=50000 where empid=3;
+Query OK, 1 row affected (0.17 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update emp set salary=60000 where empid=4;
+Query OK, 1 row affected (0.17 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update emp set salary=65000 where empid=5;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update emp set salary=51000 where empid=7;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from emp;
++-------+-----------+----------+-------------+----------+------------+-------+--------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary |
++-------+-----------+----------+-------------+----------+------------+-------+--------+
+|     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 |
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 |
+|     6 | rstyu     | oe       | deh@i.in    |     1321 | 2020-10-22 |  5677 |   NULL |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 |
++-------+-----------+----------+-------------+----------+------------+-------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select firstname,lastname from emp where salary>(select *from emp where empid=3);
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select * from emp where salary>(select *from emp where empid=3);
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select firstname,lastname from emp where salary>(select salary  emp where empid=3);
+Empty set (0.06 sec)
+
+mysql> select firstname,lastname from emp where salary>(select salary  emp where empid=3);
+Empty set (0.00 sec)
+
+mysql> select *from emp where salary>(select salary emp where empid=3);
+Empty set (0.00 sec)
+
+mysql> select *from emp where salary>(select salary emp where empid=1);
+Empty set (0.00 sec)
+
+mysql> select *from emp where salary>(select salary from  emp where empid=1);
++-------+-----------+----------+-------------+----------+------------+-------+--------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary |
++-------+-----------+----------+-------------+----------+------------+-------+--------+
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 |
++-------+-----------+----------+-------------+----------+------------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select *from emp where salary>(select salary from emp where empid=1);
++-------+-----------+----------+-------------+----------+------------+-------+--------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary |
++-------+-----------+----------+-------------+----------+------------+-------+--------+
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 |
++-------+-----------+----------+-------------+----------+------------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select *from emp where salary>(select salary from  emp where empid=3);
++-------+-----------+----------+-----------+----------+------------+-------+--------+
+| empid | firstname | lastname | email     | mobileno | hiredate   | jobid | salary |
++-------+-----------+----------+-----------+----------+------------+-------+--------+
+|     4 | rstyu     | oe       | deh@i.in  |     2661 | 2020-10-22 |   457 |  60000 |
+|     7 | rsotyu    | oep      | dtyy@i.in |     1111 | 2020-10-22 |   587 |  51000 |
++-------+-----------+----------+-----------+----------+------------+-------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select *from employee;
+ERROR 1146 (42S02): Table 'accountinfo.employee' doesn't exist
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| accountinfo        |
+| customersinfo      |
+| customesinfo       |
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| task_backup        |
++--------------------+
+9 rows in set (0.19 sec)
+
+mysql> use employee;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| employee           |
+| permannentemploy   |
++--------------------+
+2 rows in set (0.07 sec)
+
+mysql> use accountinfo;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_accountinfo |
++-----------------------+
+| accountinfor          |
+| emp                   |
+| transacid             |
++-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> desc accountinfor;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| accouid   | int         | NO   | PRI | NULL    | auto_increment |
+| acctype   | varchar(10) | YES  |     | NULL    |                |
+| accbal    | float       | YES  |     | NULL    |                |
+| accdate   | date        | YES  |     | NULL    |                |
+| accstatus | varchar(10) | YES  |     | blocked |                |
++-----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.06 sec)
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| empid     | int         | NO   | PRI | NULL    | auto_increment |
+| firstname | varchar(10) | YES  |     | NULL    |                |
+| lastname  | varchar(10) | YES  |     | NULL    |                |
+| email     | varchar(30) | YES  |     | NULL    |                |
+| mobileno  | int         | YES  | UNI | NULL    |                |
+| hiredate  | date        | YES  |     | NULL    |                |
+| jobid     | int         | YES  |     | NULL    |                |
+| salary    | float       | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+8 rows in set (0.12 sec)
+
+mysql> desc transacid;
++-----------+-------------+------+-----+----------+----------------+
+| Field     | Type        | Null | Key | Default  | Extra          |
++-----------+-------------+------+-----+----------+----------------+
+| traid     | int         | NO   | PRI | NULL     | auto_increment |
+| transtype | varchar(10) | YES  |     | credited |                |
++-----------+-------------+------+-----+----------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table accountinfor foreign key(empid) references emp(empid);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(empid) references emp(empid)' at line 1
+mysql> alter table accountinfor add  foreign key(empid) references emp(empid);
+ERROR 1072 (42000): Key column 'empid' doesn't exist in table
+mysql> create table custo(cuid int,name varchar(10),employeeid int);
+Query OK, 0 rows affected (0.80 sec)
+
+mysql> alter table accountinfor add  foreign key(employeeid) references emp(empid);
+ERROR 1072 (42000): Key column 'employeeid' doesn't exist in table
+mysql> select *from emp cross join transacid;
++-------+-----------+----------+-------------+----------+------------+-------+--------+-------+-----------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary | traid | transtype |
++-------+-----------+----------+-------------+----------+------------+-------+--------+-------+-----------+
+|     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 |     1 | credited  |
+|     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 |     2 | debited   |
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 |     1 | credited  |
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 |     2 | debited   |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 |     1 | credited  |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 |     2 | debited   |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 |     1 | credited  |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 |     2 | debited   |
+|     6 | rstyu     | oe       | deh@i.in    |     1321 | 2020-10-22 |  5677 |   NULL |     1 | credited  |
+|     6 | rstyu     | oe       | deh@i.in    |     1321 | 2020-10-22 |  5677 |   NULL |     2 | debited   |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 |     1 | credited  |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 |     2 | debited   |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 |     1 | credited  |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 |     2 | debited   |
++-------+-----------+----------+-------------+----------+------------+-------+--------+-------+-----------+
+14 rows in set (0.07 sec)
+
+mysql> select *from transacid left join emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select *from emp  join transacid;
++-------+-----------+----------+-------------+----------+------------+-------+--------+-------+-----------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary | traid | transtype |
++-------+-----------+----------+-------------+----------+------------+-------+--------+-------+-----------+
+|     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 |     1 | credited  |
+|     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 |     2 | debited   |
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 |     1 | credited  |
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 |     2 | debited   |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 |     1 | credited  |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 |     2 | debited   |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 |     1 | credited  |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 |     2 | debited   |
+|     6 | rstyu     | oe       | deh@i.in    |     1321 | 2020-10-22 |  5677 |   NULL |     1 | credited  |
+|     6 | rstyu     | oe       | deh@i.in    |     1321 | 2020-10-22 |  5677 |   NULL |     2 | debited   |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 |     1 | credited  |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 |     2 | debited   |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 |     1 | credited  |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 |     2 | debited   |
++-------+-----------+----------+-------------+----------+------------+-------+--------+-------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> select *from emp left join accountinfo;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show tables;
++-----------------------+
+| Tables_in_accountinfo |
++-----------------------+
+| accountinfor          |
+| custo                 |
+| emp                   |
+| transacid             |
++-----------------------+
+4 rows in set (0.00 sec)
+
+mysql> select *from custo left join emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select *from transacid right join emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select *from custo left join emp on custo.custid=emp.empid;
+ERROR 1054 (42S22): Unknown column 'custo.custid' in 'on clause'
+mysql> select *from custo;
+Empty set (0.00 sec)
+
+mysql> desc custo;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| cuid       | int         | YES  |     | NULL    |       |
+| name       | varchar(10) | YES  |     | NULL    |       |
+| employeeid | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select *from custo left join emp on custo.cuid=emp.empid;
+Empty set (0.00 sec)
+
+mysql> insert into custo values(1,'r',12);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> insert into custo values(21,'r',142);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into custo values(211,'ryyr',12);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select *from custo left join emp on custo.cuid=emp.empid;
++------+------+------------+-------+-----------+----------+----------+----------+------------+-------+--------+
+| cuid | name | employeeid | empid | firstname | lastname | email    | mobileno | hiredate   | jobid | salary |
++------+------+------------+-------+-----------+----------+----------+----------+------------+-------+--------+
+|    1 | r    |         12 |     1 | s         | r        | duh@i.in | 84384398 | 2020-10-22 | 38837 |  34000 |
+|   21 | r    |        142 |  NULL | NULL      | NULL     | NULL     |     NULL | NULL       |  NULL |   NULL |
+|  211 | ryyr |         12 |  NULL | NULL      | NULL     | NULL     |     NULL | NULL       |  NULL |   NULL |
++------+------+------------+-------+-----------+----------+----------+----------+------------+-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select *from custo right  join emp on custo.cuid=emp.empid;
++------+------+------------+-------+-----------+----------+-------------+----------+------------+-------+--------+
+| cuid | name | employeeid | empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary |
++------+------+------------+-------+-----------+----------+-------------+----------+------------+-------+--------+
+|    1 | r    |         12 |     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 |
+| NULL | NULL |       NULL |     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 |
+| NULL | NULL |       NULL |     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 |
+| NULL | NULL |       NULL |     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 |
+| NULL | NULL |       NULL |     6 | rstyu     | oe       | deh@i.in    |     1321 | 2020-10-22 |  5677 |   NULL |
+| NULL | NULL |       NULL |     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 |
+| NULL | NULL |       NULL |     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 |
++------+------+------------+-------+-----------+----------+-------------+----------+------------+-------+--------+
+7 rows in set (0.00 sec)
+
+mysql> elect *from custo  full join emp on custo.cuid=emp.empid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'elect *from custo  full join emp on custo.cuid=emp.empid' at line 1
+mysql> elect *from custo  full outer join emp on custo.cuid=emp.empid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'elect *from custo  full outer join emp on custo.cuid=emp.empid' at line 1
+mysql> select *from custo  full outer join emp on custo.cuid=emp.empid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'outer join emp on custo.cuid=emp.empid' at line 1
+mysql> select *from custo  full outer join emp on custo.cuid=emp.empid where salary>19000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'outer join emp on custo.cuid=emp.empid where salary>19000' at line 1
+mysql> select *from emp e1,emp e2 where e1.salary>e2.salary;
++-------+-----------+----------+-------------+----------+------------+-------+--------+-------+-----------+----------+-------------+----------+------------+-------+--------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary | empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary |
++-------+-----------+----------+-------------+----------+------------+-------+--------+-------+-----------+----------+-------------+----------+------------+-------+--------+
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 |     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 |     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 |     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 |     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 |     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 |     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 |     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 |     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 |     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 |     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 |     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 |     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 |     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 |     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 |
++-------+-----------+----------+-------------+----------+------------+-------+--------+-------+-----------+----------+-------------+----------+------------+-------+--------+
+14 rows in set (0.00 sec)
+
+mysql> show  tables;
++-----------------------+
+| Tables_in_accountinfo |
++-----------------------+
+| accountinfor          |
+| custo                 |
+| emp                   |
+| transacid             |
++-----------------------+
+4 rows in set (0.07 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| accountinfo        |
+| customersinfo      |
+| customesinfo       |
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| task_backup        |
++--------------------+
+9 rows in set (0.07 sec)
+
+mysql> desc employee;
+ERROR 1146 (42S02): Table 'accountinfo.employee' doesn't exist
+mysql> use employee;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| employee           |
+| permannentemploy   |
++--------------------+
+2 rows in set (0.05 sec)
+
+mysql> alter table employee add department varchar(10);
+Query OK, 0 rows affected (3.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee add depid int unique key;
+Query OK, 0 rows affected (3.29 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee add reporter varchar(10);
+Query OK, 0 rows affected (1.41 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| eid        | int         | NO   | PRI | NULL    |       |
+| ename      | varchar(12) | YES  |     | NULL    |       |
+| eaddr      | varchar(15) | YES  |     | NULL    |       |
+| esalary    | float       | YES  |     | NULL    |       |
+| emailid    | varchar(15) | YES  |     | NULL    |       |
+| department | varchar(10) | YES  |     | NULL    |       |
+| depid      | int         | YES  | UNI | NULL    |       |
+| reporter   | varchar(10) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into employee(department,depid,reporter) values('finance',12,'sh');
+ERROR 1364 (HY000): Field 'eid' doesn't have a default value
+mysql> insert into employee(eid,department,depid,reporter) values(1,'finance',12,'sh');
+Query OK, 1 row affected (0.18 sec)
+
+mysql> insert into employee(department,depid,reporter) values('arts',1,'shi');
+ERROR 1364 (HY000): Field 'eid' doesn't have a default value
+mysql> alter table employee eid int AUTO_INCREMENT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'eid int AUTO_INCREMENT' at line 1
+mysql> alter table employee modify  eid int AUTO_INCREMENT;
+ERROR 1833 (HY000): Cannot change column 'eid': used in a foreign key constraint 'permannentemploy_ibfk_1' of table 'employee.permannentemploy'
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| employee           |
+| permannentemploy   |
++--------------------+
+2 rows in set (0.15 sec)
+
+mysql> desc emp;
+ERROR 1146 (42S02): Table 'employee.emp' doesn't exist
+mysql> use accountinfo;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_accountinfo |
++-----------------------+
+| accountinfor          |
+| custo                 |
+| emp                   |
+| transacid             |
++-----------------------+
+4 rows in set (0.00 sec)
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| empid     | int         | NO   | PRI | NULL    | auto_increment |
+| firstname | varchar(10) | YES  |     | NULL    |                |
+| lastname  | varchar(10) | YES  |     | NULL    |                |
+| email     | varchar(30) | YES  |     | NULL    |                |
+| mobileno  | int         | YES  | UNI | NULL    |                |
+| hiredate  | date        | YES  |     | NULL    |                |
+| jobid     | int         | YES  |     | NULL    |                |
+| salary    | float       | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+8 rows in set (0.07 sec)
+
+mysql> alter table emp modify  eid int AUTO_INCREMENT;
+ERROR 1054 (42S22): Unknown column 'eid' in 'emp'
+mysql> alter table emp modify  empid int AUTO_INCREMENT;
+Query OK, 0 rows affected (0.93 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table emp add reporter varchar(10);
+Query OK, 0 rows affected (0.61 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table emp add depid int unique key;
+Query OK, 0 rows affected (2.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table emp add department varchar(10);
+Query OK, 0 rows affected (0.70 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| empid      | int         | NO   | PRI | NULL    | auto_increment |
+| firstname  | varchar(10) | YES  |     | NULL    |                |
+| lastname   | varchar(10) | YES  |     | NULL    |                |
+| email      | varchar(30) | YES  |     | NULL    |                |
+| mobileno   | int         | YES  | UNI | NULL    |                |
+| hiredate   | date        | YES  |     | NULL    |                |
+| jobid      | int         | YES  |     | NULL    |                |
+| salary     | float       | YES  |     | NULL    |                |
+| reporter   | varchar(10) | YES  |     | NULL    |                |
+| depid      | int         | YES  | UNI | NULL    |                |
+| department | varchar(10) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+11 rows in set (0.00 sec)
+
+mysql> insert into emp(department,depid,reporter) values('arts',1,'shi');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into emp(eid,department,depid,reporter) values(1,'finance',12,'sh');
+ERROR 1054 (42S22): Unknown column 'eid' in 'field list'
+mysql> insert into emp(department,depid,reporter) values('finance',12,'sh');
+Query OK, 1 row affected (0.46 sec)
+
+mysql> insert into emp(department,depid,reporter) values('science',3,'sri');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> select *from emp;
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary | reporter | depid | department |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+
+|     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 | NULL     |  NULL | NULL       |
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 | NULL     |  NULL | NULL       |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 | NULL     |  NULL | NULL       |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 | NULL     |  NULL | NULL       |
+|     6 | rstyu     | oe       | deh@i.in    |     1321 | 2020-10-22 |  5677 |   NULL | NULL     |  NULL | NULL       |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 | NULL     |  NULL | NULL       |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 | NULL     |  NULL | NULL       |
+|     9 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |   NULL | shi      |     1 | arts       |
+|    10 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |   NULL | sh       |    12 | finance    |
+|    11 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |   NULL | sri      |     3 | science    |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+
+10 rows in set (0.00 sec)
+
+mysql> alter table emp modify  reporter='shiva',depid=5,department='health' where empid=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='shiva',depid=5,department='health' where empid=1' at line 1
+mysql> update  emp set   reporter='shiva',depid=5,department='health' where empid=1;
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update  emp set   reporter='sri',depid=7,department='science' where empid=2;
+Query OK, 1 row affected (0.16 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update  emp set   reporter='pikachu',depid=4,department='commerce' where empid=3;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update  emp set   reporter='doremi',depid=3,department='computer' where empid=4;
+ERROR 1062 (23000): Duplicate entry '3' for key 'emp.depid'
+mysql> update  emp set   reporter='doremi',depid=2,department='computer' where empid=4;
+Query OK, 1 row affected (0.14 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update  emp set   reporter='doremon',depid=8,department='civil' where empid=5;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select *from emp;
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary | reporter | depid | department |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+
+|     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 | shiva    |     5 | health     |
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 | sri      |     7 | science    |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 | pikachu  |     4 | commerce   |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 | doremi   |     2 | computer   |
+|     6 | rstyu     | oe       | deh@i.in    |     1321 | 2020-10-22 |  5677 |   NULL | NULL     |  NULL | NULL       |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 | NULL     |  NULL | NULL       |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 | NULL     |  NULL | NULL       |
+|     9 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |   NULL | shi      |     1 | arts       |
+|    10 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |   NULL | sh       |    12 | finance    |
+|    11 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |   NULL | sri      |     3 | science    |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+
+10 rows in set (0.00 sec)
+
+mysql> alter table emp add designation varchar(10);
+Query OK, 0 rows affected (1.96 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update emp set designation='software' where empid=1;
+Query OK, 1 row affected (0.25 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update emp set designation='software' where empid=2;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update emp set designation='software' where empid=3;
+Query OK, 1 row affected (0.22 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update emp set designation='technician' where empid=4;
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update emp set designation='technician' where empid=5;
+Query OK, 0 rows affected (0.12 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update emp set designation='technician' where empid=6;
+Query OK, 1 row affected (0.14 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update emp set designation='technician' where empid=7;
+Query OK, 1 row affected (0.16 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from emp;
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary | reporter | depid | department | designation |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+|     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 | shiva    |     5 | health     | software    |
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 | sri      |     7 | science    | software    |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 | pikachu  |     4 | commerce   | software    |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 | doremi   |     2 | computer   | technician  |
+|     6 | rstyu     | oe       | deh@i.in    |     1321 | 2020-10-22 |  5677 |   NULL | NULL     |  NULL | NULL       | technician  |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 | NULL     |  NULL | NULL       | technician  |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 | NULL     |  NULL | NULL       | NULL        |
+|     9 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |   NULL | shi      |     1 | arts       | NULL        |
+|    10 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |   NULL | sh       |    12 | finance    | NULL        |
+|    11 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |   NULL | sri      |     3 | science    | NULL        |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> select *from emp where designation='software';
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary | reporter | depid | department | designation |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+|     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 | shiva    |     5 | health     | software    |
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 | sri      |     7 | science    | software    |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 | pikachu  |     4 | commerce   | software    |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+3 rows in set (0.05 sec)
+
+mysql> select avg(salary) from  employee;
+ERROR 1146 (42S02): Table 'accountinfo.employee' doesn't exist
+mysql> select avg(salary) from  emp;
++-------------+
+| avg(salary) |
++-------------+
+|       47500 |
++-------------+
+1 row in set (0.12 sec)
+
+mysql> select avg(salary) as average  from  emp;
++---------+
+| average |
++---------+
+|   47500 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select *from emp where salary >average;
+ERROR 1054 (42S22): Unknown column 'average' in 'where clause'
+mysql> select *from emp where salary>average
+    -> ;
+ERROR 1054 (42S22): Unknown column 'average' in 'where clause'
+mysql> select *from emp where salary>47500;
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary | reporter | depid | department | designation |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 | pikachu  |     4 | commerce   | software    |
+|     4 | rstyu     | oe       | deh@i.in    |     2661 | 2020-10-22 |   457 |  60000 | doremi   |     2 | computer   | technician  |
+|     7 | rsotyu    | oep      | dtyy@i.in   |     1111 | 2020-10-22 |   587 |  51000 | NULL     |  NULL | NULL       | technician  |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select *from emp where reporter='shiva';
++-------+-----------+----------+----------+----------+------------+-------+--------+----------+-------+------------+-------------+
+| empid | firstname | lastname | email    | mobileno | hiredate   | jobid | salary | reporter | depid | department | designation |
++-------+-----------+----------+----------+----------+------------+-------+--------+----------+-------+------------+-------------+
+|     1 | s         | r        | duh@i.in | 84384398 | 2020-10-22 | 38837 |  34000 | shiva    |     5 | health     | software    |
++-------+-----------+----------+----------+----------+------------+-------+--------+----------+-------+------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select *from emp where department='finance';
++-------+-----------+----------+-------+----------+----------+-------+--------+----------+-------+------------+-------------+
+| empid | firstname | lastname | email | mobileno | hiredate | jobid | salary | reporter | depid | department | designation |
++-------+-----------+----------+-------+----------+----------+-------+--------+----------+-------+------------+-------------+
+|    10 | NULL      | NULL     | NULL  |     NULL | NULL     |  NULL |   NULL | sh       |    12 | finance    | NULL        |
++-------+-----------+----------+-------+----------+----------+-------+--------+----------+-------+------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select *from emp where salary between 10000 and 30000;
+Empty set (0.05 sec)
+
+mysql> select min(salary) from emp;
++-------------+
+| min(salary) |
++-------------+
+|       34000 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> select max(salary) from emp;
++-------------+
+| max(salary) |
++-------------+
+|       60000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select *from emp where salary between 340000 and 50000;
+Empty set (0.00 sec)
+
+mysql> select *from emp where salary between 34000 and 50000;
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary | reporter | depid | department | designation |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+|     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 | shiva    |     5 | health     | software    |
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 | sri      |     7 | science    | software    |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 | pikachu  |     4 | commerce   | software    |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 | NULL     |  NULL | NULL       | NULL        |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select *from emp where salary between 34000 and 50000;
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+| empid | firstname | lastname | email       | mobileno | hiredate   | jobid | salary | reporter | depid | department | designation |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+|     1 | s         | r        | duh@i.in    | 84384398 | 2020-10-22 | 38837 |  34000 | shiva    |     5 | health     | software    |
+|     2 | rs        | ir       | duyth@i.in  | 77684398 | 2020-10-22 |  3677 |  45000 | sri      |     7 | science    | software    |
+|     3 | rst       | ire      | detfth@i.in |   263671 | 2020-10-22 | 45677 |  50000 | pikachu  |     4 | commerce   | software    |
+|     8 | NULL      | NULL     | NULL        |     NULL | NULL       |  NULL |  45000 | NULL     |  NULL | NULL       | NULL        |
++-------+-----------+----------+-------------+----------+------------+-------+--------+----------+-------+------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> create database onlinefoodordering;
+Query OK, 1 row affected (0.19 sec)
+
+mysql> use onlinefoodordering;
+Database changed
+mysql> create table Restaurants(restaurantid int primary key,restauarntname varchar(29),restaurantaddr varchar(30),contactno int);
+Query OK, 0 rows affected (1.84 sec)
+
+mysql> alter table Restaurants modify restaurantid int AUTO_INCREMENT;
+Query OK, 0 rows affected (2.21 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table Rmenuitems(menuid int primary key, restid int,menuname varchar(10),menutype varchar(10),menucategory varchar(10),menuprice float,menudesc text);
+Query OK, 0 rows affected (0.98 sec)
+
+mysql> alter table Rmenuitems add foreign key(restid) references Restaurants(restaurantid);
+Query OK, 0 rows affected (3.89 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table customers(customerid int primary key,customername varchar(10),customericty varchar(10),customerdob date,customergender varchar(6) default male,customerpassword varchar(13));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'male,customerpassword varchar(13))' at line 1
+mysql> create table customers(customerid int primary key,customername varchar(10),customericty varchar(10),customerdob date,customergender varchar(6) DEFAULT ' male',customerpassword varchar(13));
+Query OK, 0 rows affected (0.68 sec)
+
+mysql> CREATE TABLE orders(orderid int primary key,customid int,orderdate date,delievryaddr varchar(10),orderstatus varchar(10));
+Query OK, 0 rows affected (1.69 sec)
+
+mysql> alter table orders add foreign key(customid) references customers(customerid);
+Query OK, 0 rows affected (3.66 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> create table ordermenus(orderids int,menuid int,menuqty int,menuprice float);
+Query OK, 0 rows affected (0.89 sec)
+
+mysql> alter table ordermenus add foreign key(orderid) references orders(orderid);
+ERROR 1072 (42000): Key column 'orderid' doesn't exist in table
+mysql> alter table ordermenus add foreign key(orderids) references orders(orderid);
+Query OK, 0 rows affected (3.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table ordermenus add foreign key(menuid) references Rmenuitems(menuid);
+Query OK, 0 rows affected (2.76 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table ordermenus menuid int primarykey;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'menuid int primarykey' at line 1
+mysql> alter table ordermenus menuid int primary key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'menuid int primary key' at line 1
+mysql> desc Restaurants;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| restaurantid   | int         | NO   | PRI | NULL    | auto_increment |
+| restauarntname | varchar(29) | YES  |     | NULL    |                |
+| restaurantaddr | varchar(30) | YES  |     | NULL    |                |
+| contactno      | int         | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.10 sec)
+
+mysql> desc Rmenuitems;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| menuid       | int         | NO   | PRI | NULL    |       |
+| restid       | int         | YES  | MUL | NULL    |       |
+| menuname     | varchar(10) | YES  |     | NULL    |       |
+| menutype     | varchar(10) | YES  |     | NULL    |       |
+| menucategory | varchar(10) | YES  |     | NULL    |       |
+| menuprice    | float       | YES  |     | NULL    |       |
+| menudesc     | text        | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> alter table Rmenuitems  MODIFY menuid int  AUTO_INCREMENT;
+ERROR 1833 (HY000): Cannot change column 'menuid': used in a foreign key constraint 'ordermenus_ibfk_2' of table 'onlinefoodordering.ordermenus'
+mysql> desc CUSTOMERS;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| customerid       | int         | NO   | PRI | NULL    |       |
+| customername     | varchar(10) | YES  |     | NULL    |       |
+| customericty     | varchar(10) | YES  |     | NULL    |       |
+| customerdob      | date        | YES  |     | NULL    |       |
+| customergender   | varchar(6)  | YES  |     |  male   |       |
+| customerpassword | varchar(13) | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into Restaurants(1,'a','ind','hyd',12345);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1,'a','ind','hyd',12345)' at line 1
+mysql> insert into Restaurants values(1,'a','ind','hyd',12345);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> desc Restuarants;
+ERROR 1146 (42S02): Table 'onlinefoodordering.restuarants' doesn't exist
+mysql> desc Restaurants;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| restaurantid   | int         | NO   | PRI | NULL    | auto_increment |
+| restauarntname | varchar(29) | YES  |     | NULL    |                |
+| restaurantaddr | varchar(30) | YES  |     | NULL    |                |
+| contactno      | int         | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into Restaurants values(1,'a','ind',12345);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into Restaurants(restaurantname,restaurantaddr,contactno) values('b','ind',1125);
+ERROR 1054 (42S22): Unknown column 'restaurantname' in 'field list'
+mysql> insert into Restaurants(restaurntname,restaurantaddr,contactno) values('b','ind',1125);
+ERROR 1054 (42S22): Unknown column 'restaurntname' in 'field list'
+mysql> insert into Restaurants(restauarntname,restaurantaddr,contactno) values('b','ind',1125);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into Restaurants(restauarntname,restaurantaddr,contactno) values('c','ind',1901);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into Restaurants(restauarntname,restaurantaddr,contactno) values('d','ind',1902);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into Restaurants(restauarntname,restaurantaddr,contactno) values('ed,'ind',1903);
+    '> ^C
+mysql> insert into Restaurants(restauarntname,restaurantaddr,contactno) values('ed','ind',1903);
+Query OK, 1 row affected (0.16 sec)
+
+mysql> insert into Restaurants(restauarntname,restaurantaddr,contactno) values('f','ind',1904);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> select *from Restaurants;
++--------------+----------------+----------------+-----------+
+| restaurantid | restauarntname | restaurantaddr | contactno |
++--------------+----------------+----------------+-----------+
+|            1 | a              | ind            |     12345 |
+|            2 | b              | ind            |      1125 |
+|            3 | c              | ind            |      1901 |
+|            4 | d              | ind            |      1902 |
+|            5 | ed             | ind            |      1903 |
+|            6 | f              | ind            |      1904 |
++--------------+----------------+----------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> desc Rmenuitems;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| menuid       | int         | NO   | PRI | NULL    |       |
+| restid       | int         | YES  | MUL | NULL    |       |
+| menuname     | varchar(10) | YES  |     | NULL    |       |
+| menutype     | varchar(10) | YES  |     | NULL    |       |
+| menucategory | varchar(10) | YES  |     | NULL    |       |
+| menuprice    | float       | YES  |     | NULL    |       |
+| menudesc     | text        | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+7 rows in set (0.16 sec)
+
+mysql> insert into Rmenuitems (menuid,restid,menuname,menutype,menucategory,menuprice,menudesc)  values(1,11,'spl','veg','adl',600,'pure veg');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`onlinefoodordering`.`rmenuitems`, CONSTRAINT `rmenuitems_ibfk_1` FOREIGN KEY (`restid`) REFERENCES `restaurants` (`restaurantid`))
+mysql> insert into Rmenuitems (menuid,restid,menuname,menutype,menucategory,menuprice,menudesc)  values(1,1,'spl','veg','adl',600,'pure veg');
+Query OK, 1 row affected (0.43 sec)
+
+mysql> insert into Rmenuitems (menuid,restid,menuname,menutype,menucategory,menuprice,menudesc)  values(2,2,'spl','veg','adl',600,'pure veg');
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into Rmenuitems (menuid,restid,menuname,menutype,menucategory,menuprice,menudesc)  values(3,3,'spl','veg',nadl',900,'pure veg');
+    '> ^C
+mysql> insert into Rmenuitems (menuid,restid,menuname,menutype,menucategory,menuprice,menudesc)  values(3,3,'spl','veg','nadl',900,'pure veg');
+Query OK, 1 row affected (0.18 sec)
+
+mysql> insert into Rmenuitems (menuid,restid,menuname,menutype,menucategory,menuprice,menudesc)  values(4,4,'ordspl','nonveg','intopll',900,'non veg');
+Query OK, 1 row affected (0.46 sec)
+
+mysql> insert into Rmenuitems (menuid,restid,menuname,menutype,menucategory,menuprice,menudesc)  values(5,5,'ordspl','nonveg','intopll',9100,'non veg');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select *from Rmenuitems;
++--------+--------+----------+----------+--------------+-----------+----------+
+| menuid | restid | menuname | menutype | menucategory | menuprice | menudesc |
++--------+--------+----------+----------+--------------+-----------+----------+
+|      1 |      1 | spl      | veg      | adl          |       600 | pure veg |
+|      2 |      2 | spl      | veg      | adl          |       600 | pure veg |
+|      3 |      3 | spl      | veg      | nadl         |       900 | pure veg |
+|      4 |      4 | ordspl   | nonveg   | intopll      |       900 | non veg  |
+|      5 |      5 | ordspl   | nonveg   | intopll      |      9100 | non veg  |
++--------+--------+----------+----------+--------------+-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql>

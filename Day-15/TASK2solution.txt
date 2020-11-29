@@ -1,0 +1,433 @@
+Microsoft Windows [Version 10.0.18363.1198]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\hello>cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql
+ERROR 1045 (28000): Access denied for user 'ODBC'@'localhost' (using password: NO)
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 21
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create table customesinfo( custid int  primary key,custname varchar(15),customeaddr varchar(10),mobleno long,pan long,password varchar(10));
+ERROR 1046 (3D000): No database selected
+mysql> create database customesinfo;
+Query OK, 1 row affected (1.20 sec)
+
+mysql> use customesinfo;
+Database changed
+mysql> create table customesinfo( custid int  primary key,custname varchar(15),customeaddr varchar(10),mobleno long,pan long,password varchar(10));
+Query OK, 0 rows affected (3.12 sec)
+
+mysql> create table customesinfo( custid int  primary key,custname varchar(15),customeaddr varchar(10),mobleno long uniquekey,pan long unique key,password varchar(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'uniquekey,pan long unique key,password varchar(10))' at line 1
+mysql> create table customesinfo( custid int  primary key,custname varchar(15),customeaddr varchar(10),mobleno long unique key,pan long unique key,password varchar(10));
+ERROR 1050 (42S01): Table 'customesinfo' already exists
+mysql> clear;
+mysql> create table customesinfo( custid int  primary key,custname varchar(15),customeaddr varchar(10),mobleno long unique key,pan long unique key,password varchar(10));
+ERROR 1050 (42S01): Table 'customesinfo' already exists
+mysql> create database customersinfo;
+Query OK, 1 row affected (0.20 sec)
+
+mysql> use customersinfo;
+Database changed
+mysql> create table customersinfo( custid int  primary key,custname varchar(15),customeaddr varchar(10),mobleno long unique key,pan long unique key,password varchar(10));
+ERROR 1170 (42000): BLOB/TEXT column 'mobleno' used in key specification without a key length
+mysql> create table customersinfo( custid int  primary key,custname varchar(15),customeaddr varchar(10),mobleno long(10) unique key,pan long(10) unique key,password varchar(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(10) unique key,pan long(10) unique key,password varchar(10))' at line 1
+mysql> create table customersinfo(cuid int primarykey , custname varchar(10),custaddrvarchar(10),mobileno int unique key,pan int unique key,password varchar(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primarykey , custname varchar(10),custaddrvarchar(10),mobileno int unique key,pa' at line 1
+mysql> create table customersinfo(cuid int primary key , custname varchar(10),custaddrvarchar(10),mobileno int unique key,pan int unique key,password varchar(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(10),mobileno int unique key,pan int unique key,password varchar(10))' at line 1
+mysql> create table customersinfo(cuid int primary key , custname varchar(10),custaddrvarchar(10),mobileno int unique key,pan int unique key,pword varchar(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(10),mobileno int unique key,pan int unique key,pword varchar(10))' at line 1
+mysql> create table customersinfo(cuid int primary key , custname varchar(10),custaddrvarchar(10),mobileno int unique key,pan int unique key,custpword varchar(10))
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(10),mobileno int unique key,pan int unique key,custpword varchar(10))' at line 1
+mysql> create table customersinfo(cuid int primary key , custname varchar(10),custaddr varchar(10),mobileno int unique key,pan int unique key,custpword varchar(10));
+Query OK, 0 rows affected (2.08 sec)
+
+mysql> alter table customersinfo modify cuid int AUTO_INCREMENT;
+Query OK, 0 rows affected (2.96 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into customersinfo values(11,'sri','gnt',34837837,49493,'sriiiiii');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into customersinfo(custname,custaddr ,mobileno,pan,custpword) values('vidya','hyd',384783100,8478748,'viiiii');
+Query OK, 1 row affected (0.16 sec)
+
+mysql> insert into customersinfo(custname,custaddr ,mobileno,pan,custpword) values('srvidya','hy1d',3483100,900478748,'vdii');
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into customersinfo(custname,custaddr ,mobileno,pan,custpword) values('vidya1','hy12d',384783100,6478748,'6jhiiii');
+ERROR 1062 (23000): Duplicate entry '384783100' for key 'customersinfo.mobileno'
+mysql> insert into customersinfo(custname,custaddr ,mobileno,pan,custpword) values('vidya1','hy12d',67800,6478748,'6jhiiii');i');
+Query OK, 1 row affected (0.30 sec)
+
+    '> exit;
+    '> \exit;
+    '> insert into customersinfo(custname,custaddr ,mobileno,pan,custpword) values('vidya1','hy12d',67800,6478748,'6jhiiii');
+    '> ;
+    '> \q
+    '> ;
+    '> create table accountinfo(accountid int primary key,accotype varchar(10),accountbal float,accopendate date,accountsttaus default closed,foreign key(cuid) references customersinfo(cuid));
+    '> \quit;
+    '> quit;
+    '> /exit
+    '> /exit;
+    '> exit
+    '> ;
+    '> quit;
+    '> cls;
+    '>
+
+
+
+Microsoft Windows [Version 10.0.18363.1198]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\hello>mysql -u root -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 22
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE USER sri IDENTIFIED_BY SRIVIDYA@511;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IDENTIFIED_BY SRIVIDYA@511' at line 1
+mysql> CREATE USER sri IDENTIFIED BY SRIVIDYA@511;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SRIVIDYA@511' at line 1
+mysql> create user sri identified by 'SRIVIDYA@511';
+Query OK, 0 rows affected (1.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| customersinfo      |
+| customesinfo       |
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| task_backup        |
++--------------------+
+8 rows in set (0.31 sec)
+
+mysql> use task_backup;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_task_backup |
++-----------------------+
+| employee              |
+| permannentemploy      |
++-----------------------+
+2 rows in set (0.17 sec)
+
+mysql> grant select on task_backup.employee to sri;
+Query OK, 0 rows affected (0.24 sec)
+
+mysql> select *from employee;
++------+---------+------------+---------+---------+
+| eid  | ename   | eaddr      | esalary | emailid |
++------+---------+------------+---------+---------+
+|   12 | pikachu | disneyland |   56000 | NULL    |
+|  112 | doremi  | shangai    |   26000 | NULL    |
+| 1112 | doremon | shangai    |   60000 | NULL    |
++------+---------+------------+---------+---------+
+3 rows in set (0.11 sec)
+
+mysql> exit
+Bye
+
+C:\Users\hello>mysql -u root -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> revoke executed on employee from sri;
+ERROR 1046 (3D000): No database selected
+mysql> revoke select on employee from sri;
+ERROR 1046 (3D000): No database selected
+mysql> exit
+Bye
+
+C:\Users\hello>mysql -u sri -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 24
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databses;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databses' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| task_backup        |
++--------------------+
+2 rows in set (0.05 sec)
+
+mysql> select *from employee;
+ERROR 1046 (3D000): No database selected
+mysql> use task_backup;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_task_backup |
++-----------------------+
+| employee              |
++-----------------------+
+1 row in set (0.01 sec)
+
+mysql> select *from employee;
++------+---------+------------+---------+---------+
+| eid  | ename   | eaddr      | esalary | emailid |
++------+---------+------------+---------+---------+
+|   12 | pikachu | disneyland |   56000 | NULL    |
+|  112 | doremi  | shangai    |   26000 | NULL    |
+| 1112 | doremon | shangai    |   60000 | NULL    |
++------+---------+------------+---------+---------+
+3 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+
+C:\Users\hello>mysql -u root -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 25
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> revoke select on employee from sri;
+ERROR 1046 (3D000): No database selected
+mysql> use task_backup;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_task_backup |
++-----------------------+
+| employee              |
+| permannentemploy      |
++-----------------------+
+2 rows in set (0.01 sec)
+
+mysql> revoke select on employee from sri;
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> revoke executed on employee from sri;
+ERROR 3619 (HY000): Illegal privilege level specified for employee
+mysql> exit
+Bye
+
+C:\Users\hello>mysql -u sri -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 26
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use task_backup;
+ERROR 1044 (42000): Access denied for user 'sri'@'%' to database 'task_backup'
+mysql> exit
+Bye
+
+C:\Users\hello>cshow databases;
+'cshow' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\hello>show databases;
+'show' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\hello>mysql -u root -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 27
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| customersinfo      |
+| customesinfo       |
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| task_backup        |
++--------------------+
+8 rows in set (0.97 sec)
+
+mysql> CREATE DATABASE ACCOUNTINFO;
+Query OK, 1 row affected (0.56 sec)
+
+mysql> USE ACCOUNTINFO;
+Database changed
+mysql> create table accountinfor(accouid int primary key,acctype varchar(10),accbal float,accdate date,accstatus default blocked, foreign key(cuid
+    -> ) references customersinfo(cuid);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'default blocked, foreign key(cuid
+) references customersinfo(cuid)' at line 1
+mysql> create table accountinfor(accouid int primary key,acctype varchar(10),accbal float,accdate date,accstatus default blocked, foreign key(cuid) references customersinfo(cuid);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'default blocked, foreign key(cuid) references customersinfo(cuid)' at line 1
+mysql> create table accountinfor(accouid int primary key,acctype varchar(10),accbal float,accdate date,accstatus varchar(10)  default blocked, foreign key(cuid) references customersinfo(cuid);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'blocked, foreign key(cuid) references customersinfo(cuid)' at line 1
+mysql> create table accountinfor(accouid int primary key,acctype varchar(10),accbal float,accdate date,accstatus varchar(10)  default 'blocked', foreign key(cuid) references customersinfo(cuid);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table accountinfor(accouid int primary key,acctype varchar(10),accbal float,accdate date,accstatus varchar(10)  DEFAULT  'blocked', foreign key(cuid) references customersinfo(cuid);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table accountinfor(accouid int primary key,acctype varchar(10),accbal float,accdate date,accstatus varchar(10)  DEFAULT  'blocked', foreign key(cuid) references customersinfo(cuid));
+ERROR 1072 (42000): Key column 'cuid' doesn't exist in table
+mysql> create table accountinfor(accouid int primary key,acctype varchar(10),accbal float,accdate date,accstatus varchar(10)  DEFAULT  'blocked', foreign key(Acuid) references customersinfo(cuid));
+ERROR 1072 (42000): Key column 'Acuid' doesn't exist in table
+mysql> create table accountinfor(accouid int primary key,acctype varchar(10),accbal float,accdate date,accstatus varchar(10)  DEFAULT  'blocked', foreign key(cuid) references customersinfo(cuid));
+ERROR 1072 (42000): Key column 'cuid' doesn't exist in table
+mysql> DESC CUSTOMERSINFO;
+ERROR 1146 (42S02): Table 'accountinfo.customersinfo' doesn't exist
+mysql> desc accountinfor;
+ERROR 1146 (42S02): Table 'accountinfo.accountinfor' doesn't exist
+mysql> desc accountinfo;
+ERROR 1146 (42S02): Table 'accountinfo.accountinfo' doesn't exist
+mysql> create table accountinfor(accouid int primary key,acctype varchar(10),accbal float,accdate date,accstatus varchar(10)  DEFAULT  'blocked');
+Query OK, 0 rows affected (4.15 sec)
+
+mysql> desc accountinfo;
+ERROR 1146 (42S02): Table 'accountinfo.accountinfo' doesn't exist
+mysql> desc accountinfor;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| accouid   | int         | NO   | PRI | NULL    |       |
+| acctype   | varchar(10) | YES  |     | NULL    |       |
+| accbal    | float       | YES  |     | NULL    |       |
+| accdate   | date        | YES  |     | NULL    |       |
+| accstatus | varchar(10) | YES  |     | blocked |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.36 sec)
+
+mysql> alter table accountinfor modify accouid int AUTO_INCREMENT;
+Query OK, 0 rows affected (4.74 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into accountinfor values(1,'personal',43400.90,'2010-10-22','open');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into accountinfor(acctype,accbal,accdate,acccstatus) values ('edu',67900.90,'2010-11-22','opened');
+ERROR 1054 (42S22): Unknown column 'acccstatus' in 'field list'
+mysql> insert into accountinfor(acctype,accbal,accdate,accstatus) values ('edu',67900.90,'2010-11-22','opened');
+Query OK, 1 row affected (0.19 sec)
+
+mysql> insert into accountinfor(acctype,accbal,accdate,accstatus) values ('edu',64900.90,'2010-12-22','closed');
+Query OK, 1 row affected (0.20 sec)
+
+mysql> insert into accountinfor(acctype,accbal,accdate,accstatus) values ('pers',45900.90,'2011-12-22','closed');
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into accountinfor(acctype,accbal,accdate,accstatus) values ('pers',67400.90,'2011-12-02','closed');
+Query OK, 1 row affected (0.16 sec)
+
+mysql> select *from accountinfor;
++---------+----------+---------+------------+-----------+
+| accouid | acctype  | accbal  | accdate    | accstatus |
++---------+----------+---------+------------+-----------+
+|       1 | personal | 43400.9 | 2010-10-22 | open      |
+|       2 | edu      | 67900.9 | 2010-11-22 | opened    |
+|       3 | edu      | 64900.9 | 2010-12-22 | closed    |
+|       4 | pers     | 45900.9 | 2011-12-22 | closed    |
+|       5 | pers     | 67400.9 | 2011-12-02 | closed    |
++---------+----------+---------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> create table transacid(traid int primary key,transtype varchar(10) DEFAULT  'credited');
+Query OK, 0 rows affected (1.81 sec)
+
+mysql> desc transacid;
++-----------+-------------+------+-----+----------+-------+
+| Field     | Type        | Null | Key | Default  | Extra |
++-----------+-------------+------+-----+----------+-------+
+| traid     | int         | NO   | PRI | NULL     |       |
+| transtype | varchar(10) | YES  |     | credited |       |
++-----------+-------------+------+-----+----------+-------+
+2 rows in set (0.11 sec)
+
+mysql> insert into trasacid values(1,'credited');
+ERROR 1146 (42S02): Table 'accountinfo.trasacid' doesn't exist
+mysql> insert into transacid values(1,'credited');
+Query OK, 1 row affected (0.24 sec)
+
+mysql> alter table transacid modify traid int AUTO_INCREMENT;
+Query OK, 1 row affected (5.45 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> insert into transacid values('debited');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into transacid(transtype)  values('debited');
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into transacid(transtype)  values('credited);
+    '> exit
+    '>
