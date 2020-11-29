@@ -1,0 +1,14 @@
+use venkydb;
+create table Restaurants(RestaurantID int primary key, RestaurantName varchar(20), RestaurantAddress varchar(20), RestaurantCity varchar(20), ContactNo int);
+create table RMenuItems(MenuID int primary key ,RestID int, MenuName varchar(20), MenuType varchar(20), MenuCategory varchar(20), MenuPrice int, MenuDesc varchar(20),foreign key(RestID) references Restaurants(RestaurantID));
+create table RCustomer(CustomerID int primary key , CustomerName varchar(20), CustomerCity varchar(20), CustomerDOB date, CustomerGender varchar(10), CustomerPassword varchar(20));
+create table Orders(OrderID int primary key , CustomerID int, OrderDate date, DeliveryAddress varchar(20), OrderStatus varchar(20),foreign key(CustomerID) references RCustomer(CustomerID));
+create table OrderMenus(OrderID int , MenuID int, MenuQty int, MenuPrice float,foreign key(orderid) references orders(orderid),foreign key(Menuid) references RmenuItems(menuid));
+select * from restaurants where city='hyderabad';
+select restaurantid,restaurantname,menuid,menuname,menuprice from restaurants r join rmenuitems s on r.restaurantid=s.restid;
+select restaurantid,restaurantname,menuid,menuname,menuprice from restaurants r join rmenuitems s on r.restaurantid=s.restid where restaurantcity='hyderabad';
+select d.Customerid,orderid from rcustomer d join orders o on d.customerid=o.orderid;
+select o.OrderID,r.menuID,r.menuQty,o.customerID from Orders q join ordermenus r  on q.orderid=r.orderid;
+select OrderID,MenuID from orders i join ordermenus j on i.orderid=j.orderid where o.customerid=2;
+select orderid,restid,restaurantname from orders f join rcustomer i on f.customerid=i.customerid join rmenuitems t on i.menuid=t.menuid join restaurants e on e.resaturantid=t.restid;
+select menuid,orderid from ordermenus s join orders q on s.orderid=q.orderid limit 10;
