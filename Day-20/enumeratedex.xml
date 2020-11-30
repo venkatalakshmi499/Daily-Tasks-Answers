@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE accounts [
+<!ELEMENT accounts (account)*>
+<!ELEMENT accounts EMPTY>
+<!ATTLIST account acounttype (saving | current | demat) #REQUIRED
+]>
+
+<accounts>
+	<acount acounttype="saving"></acount>
+	<acount acounttype="current"></acount>
+	<acount acounttype="demat"></acount>
+</accounts>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE student [
+<!ELEMENT student(stdid,sname,sadd)>
+<!ELEMENT stdid (#PCDATA)>
+<!ELEMENT sname (#PCDATA)>
+<!ELEMENT sadd (#PCDATA)>
+]>
+<student>
+	<stdid>67</stdid>
+	<stdid>sk</stdid>
+	
+	</student>
+

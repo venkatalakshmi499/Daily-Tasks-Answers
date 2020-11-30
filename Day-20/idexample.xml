@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE students [
+<!ELEMENT students ( student+)>
+<!ELEMENT student EMPTY>
+<!ATTLIST student  stdid   ID #REQUIRED>
+<!ATTLIST  student  sname CDATA #IMPLIED>
+<!ATTLIST  student  sadd CDATA   " ">
+
+
+
+]>
+<students>
+			<student stdid="jhsbh1235" sadd="india" ></student>
+			
+			<student stdid="jkug1235"  sname="venky" sadd="india" ></student>
+			
+</students>

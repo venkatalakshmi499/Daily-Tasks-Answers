@@ -1,0 +1,4 @@
+<!ELEMENT student (sid,sname,sadd)>
+<! ELEMENT sid (#PCDATA)>
+<! ELEMENT sname (#PCDATA)>
+<! ELEMENT sadd (#PCDATA)>

@@ -1,0 +1,24 @@
+<!DOCTYPE books [
+<!ELEMENT books (book*)>
+<!ELEMENT book (bookid,price,author+,publisher?,organizer,some)>
+<!ELEMENT bookid (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT publisher (#PCDATA)>
+<!ELEMENT some (#PCDATA)>
+<!ELEMENT organizer (#PCDATA | nothing | que)*>
+<!ELEMENT nothing (#PCDATA)>
+<!ELEMENT que (#PCDATA)>
+]>
+
+<books>
+	<book>
+		<bookid>123</bookid>
+		<price>300</price>
+		<author>venky</author>
+		<author>sruthi</author>
+		<publisher>mahi</publisher>
+		<organizer>Any</organizer>
+		<some>EMPTY</some>
+	</book>
+</books>

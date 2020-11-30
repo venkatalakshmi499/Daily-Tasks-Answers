@@ -1,0 +1,42 @@
+<!DOCTYPE books[
+<!ELEMENT books (book*)>
+<!ELEMENT book (bookid,price,author+,publisher?,booksize,bdetails,details,pubdate)>
+<!ELEMENT bookid (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT publisher (#PCDATA)>
+<!ELEMENT booksize EMPTY>
+<!ELEMENT bdetails ANY>
+<!ELEMENT details (#PCDATA)>
+<!ELEMENT pubdate (#PCDATA | pdate )*>
+<!ELEMENT pdate (#PCDATA)>
+<!ELEMENT some (#PCDATA)>
+]>
+
+ 
+
+
+<books>
+    <book>
+        <bookid>987</bookid>
+        <price>900</price>
+        <author>rajesh</author>
+        <author>krishna</author>
+        <publisher>chennai printers</publisher>
+        <booksize/>
+        <bdetails><details>published sucessfully</details></bdetails>
+        <pubdate>something</pubdate>
+    </book>
+    
+    
+    <book>
+        <bookid>986</bookid>
+        <price>250</price>
+        <author>lakshmi</author>
+        <author>vishnupriya</author>
+        <publisher>nellore printers</publisher>
+        <booksize/>
+        <bdetails><details>waiting to publish </details></bdetails>
+        <pubdate><pdate>3oth december</pdate></pubdate>
+    </book>
+</books>

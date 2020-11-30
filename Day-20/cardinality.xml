@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<! DOCTYPE books [
+<! ELEMENT books (book*)>
+<! ELEMENT book (bookid,price,author)>
+<! ELEMENT bookid (#PCDATA)>
+<! ELEMENT price (#PCDATA)>
+<! ELEMENT author (#PCDATA)>
+<! ELEMENT publisher (#PCDATA)>
+] >
+
+<books>
+<book>
+			<bookid> 987 </bookid>
+			<price> 1200 </price>
+			<author> venky </author>
+			<author> priya </author>
+			<author> sruthi </author>
+			<publisher> chennai printers </publisher>
+</book>
+<book>
+<bookid> 94</bookid>
+<bookname> jjava</bookname>
+<price> 22</price>
+<author> venky</author>
+</book>
+</books>
+
