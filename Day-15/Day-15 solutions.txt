@@ -1,0 +1,97 @@
+1. select * from employee;
++--------+------------+-----------+------------------+--------------+------------+--------+---------+
+| emp_Id | first_name | last_name | email            | phone_number | hire_date  | job_id | esalary |
++--------+------------+-----------+------------------+--------------+------------+--------+---------+
+|    160 | venkata    | laxmi     | abcd@gmail.com   |       5615633 | 2019-06-23 |   1234 |   25000 |
+|    161 | madhu      | priya     | priya@gmail.com  |      5615658 | 2019-05-20 |   5678 |   30000 |
+|    162 | sai        | kumar     | sai@gmail.com    | 8915658 |       2018-11-20 |   8986 |   20000 |
+|    163 | sasi       | rekha     | sasi@gmail.com   |  6815658 |       2020-10-20 |   8888 |   24000 |
+|    164 | vishnu     | vardhan   | vishnu@gmail.com |3615658 |  2019-09-16 |   8585 |   55000 |
+|    165 | sunil      | kumar     | sunil@gmail.com  |   9815658 |     2018-09-16 |   9896 |   60000 |
+|    166 | sruthi     | dhavala   | sruthi@gmail.com | 8156589 | 2019-09-16 |   9896 |   20000 |
+|    167 | mouni      | kethi     | mouni@gmail.com  | 7156589 | 2019-09-16 |   9896 |   23000 |
+|    168 | raj        | kumar     | raj@gmail.com    |     71545689 | 2019-09-16 |   9899 |   24000 |
+|    169 | dileep     | kumar     | dillu@gmail.com  |       896589 | 2000-09-16 |   3896 |   75000 |
++--------+------------+-----------+------------------+--------------+------------+--------+---------+
+
+
+
+2. select * from employee where esalary BETWEEN 10000 AND 30000;
++--------+------------+-----------+------------------+--------------+------------+--------+---------+
+| emp_Id | first_name | last_name | email            | phone_number | hire_date  | job_id | esalary |
++--------+------------+-----------+------------------+--------------+------------+--------+---------+
+|    160 | venkata    | laxmi     | abcd@gmail.com   |      5615633 | 2019-06-23 |   1234 |   25000 |
+|    161 | madhu      | priya     | priya@gmail.com  |      5615658 | 2019-05-20 |   5678 |   30000 |
+|    162 | sai        | kumar     | sai@gmail.com    |      8915658 | 2018-11-20 |   8986 |   20000 |
+|    163 | sasi       | rekha     | sasi@gmail.com   |      6815658 | 2020-10-20 |   8888 |   24000 |
+|    166 | sruthi     | dhavala   | sruthi@gmail.com |      8156589 | 2019-09-16 |   9896 |   20000 |
+|    167 | mouni      | kethi     | mouni@gmail.com  |      7156589 | 2019-09-16 |   9896 |   23000 |
+|    168 | raj        | kumar     | raj@gmail.com    |     71545689 | 2019-09-16 |   9899 |   24000 |
++--------+------------+-----------+------------------+--------------+------------+--------+---------+
+
+
+3.select * from employee where emp_Id=162 OR emp_Id=166 OR emp_Id=168;
++--------+------------+-----------+------------------+--------------+------------+--------+---------+
+| emp_Id | first_name | last_name | email            | phone_number | hire_date  | job_id | esalary |
++--------+------------+-----------+------------------+--------------+------------+--------+---------+
+|    162 | sai        | kumar     | sai@gmail.com    |      8915658 | 2018-11-20 |   8986 |   20000 |
+|    166 | sruthi     | dhavala   | sruthi@gmail.com |      8156589 | 2019-09-16 |   9896 |   20000 |
+|    168 | raj        | kumar     | raj@gmail.com    |     71545689 | 2019-09-16 |   9899 |   24000 |
++--------+------------+-----------+------------------+--------------+------------+--------+---------+
+
+4. select first_name,last_name,esalary,emp_Id from employee where esalary>(select esalary from employee where emp_Id=163);
++------------+-----------+---------+--------+
+| first_name | last_name | esalary | emp_Id |
++------------+-----------+---------+--------+
+| venkata    | laxmi     |   25000 |    160 |
+| madhu      | priya     |   30000 |    161 |
+| vishnu     | vardhan   |   55000 |    164 |
+| sunil      | kumar     |   60000 |    165 |
+| dileep     | kumar     |   75000 |    169 |
++------------+-----------+---------+--------+
+
+
+ONLINE FOOD ORDERING 
+---------------------------------------------------------------------
+
+1. create table Restaurants(RestaurantId int PRIMARY KEY AUTO_INCREMENT,RestaurantName varchar(30),RestaurantAddress varchar(30),RestaurantCity varchar(20),ContactNo BIGINT UNIQUE);
+Query OK, 0 rows affected (1.44 sec)
+
+mysql> desc Restaurants;
++-------------------+-------------+------+-----+---------+----------------+
+| Field             | Type        | Null | Key | Default | Extra          |
++-------------------+-------------+------+-----+---------+----------------+
+| RestaurantId      | int         | NO   | PRI | NULL    | auto_increment |
+| RestaurantName    | varchar(30) | YES  |     | NULL    |                |
+| RestaurantAddress | varchar(30) | YES  |     | NULL    |                |
+| RestaurantCity    | varchar(20) | YES  |     | NULL    |                |
+| ContactNo         | bigint      | YES  | UNI | NULL    |                |
++-------------------+-------------+------+-----+---------+----------------+
+
+select * from restaurants;
++--------------+----------------+-------------------+----------------+-----------+
+| RestaurantId | RestaurantName | RestaurantAddress | RestaurantCity | ContactNo |
++--------------+----------------+-------------------+----------------+-----------+
+|            1 | Taj            | Vizag             | vizag          |    505325 |
+|            2 | Dolphin        | daba gardens      | vizag          |    505323 |
+|            3 | Novotel        | Maharani peta     | vizag          |    505623 |
+|            4 | Dhanunj        | tadivada          | vzm            |    505643 |
+|            5 | GreenHotel     | RamNagar          | hyderbad       |    508643 |
++--------------+----------------+-------------------+----------------+-----------+
+
+
+
+2.create table RMenuItems(MenuId int PRIMARY KEY AUTO_INCREMENT,foreign key(MenuId) references restaurants(RestaurantId),MenuName varchar(30),MenuType varchar(20),MenuCategory varchar(20),MenuPrice Float,MenuDesc varchar(50));
+
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| MenuId       | int         | NO   | PRI | NULL    | auto_increment |
+| MenuName     | varchar(30) | YES  |     | NULL    |                |
+| MenuType     | varchar(20) | YES  |     | NULL    |                |
+| MenuCategory | varchar(20) | YES  |     | NULL    |                |
+| MenuPrice    | float       | YES  |     | NULL    |                |
+| MenuDesc     | varchar(50) | YES  |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+
+
