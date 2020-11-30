@@ -1,0 +1,212 @@
+
+<html>
+   <head>
+      <title>Javascript Method toExponential()</title>
+   </head>
+   
+   <body>
+      <script type = "text/javascript">
+         var num = 77.1234;
+         var val = num.toExponential(); 
+         document.write("num.toExponential() is : " + val );
+         document.write("<br />"); 
+         val = 77.1234.toExponential(); 
+         document.write("77 .toExponential() is : " + val); 
+      </script>   
+	  <p>Click the following to see the result:</p>     
+      <form>
+         <input type = "button" value = "Click Me" onclick = "showValue();" />
+      </form>  
+	  <p>Click the following to see the result:</p>      
+      <form>
+         <input type = "button" value = "Click Me" onclick = "showValue();" />
+      </form>  
+	  <p>Click the following to see the result:</p>      
+      <form>
+         <input type = "button" value = "Click Me" onclick = "showValue();" />
+      </form> 
+	  <p>Click the following to see the result:</p>      
+      <form>
+         <input type = "button" value = "Click Me" onclick = "showValue();" />
+      </form>    
+	   <script type = "text/javascript">
+         var str = new String( "This is string" );
+         document.write("str.length is:" + str.length); 
+      </script>   
+	  <script type = "text/javascript">
+         var str = new String( "This is string" );
+         document.writeln("str.charAt(0) is:" + str.charAt(0)); 
+         document.writeln("<br />str.charAt(1) is:" + str.charAt(1)); 
+         document.writeln("<br />str.charAt(2) is:" + str.charAt(2));	//string methods
+         document.writeln("<br />str.charAt(3) is:" + str.charAt(3)); 
+         document.writeln("<br />str.charAt(4) is:" + str.charAt(4)); 
+         document.writeln("<br />str.charAt(5) is:" + str.charAt(5)); 
+      </script>    
+	  <script type = "text/javascript">
+         var str1 = new String( "This is string one" );					//concate method
+         var str2 = new String( "This is string two" );
+         var str3 = str1.concat( str2 );      
+         document.write("Concatenated String :" + str3); 
+      </script>   
+	  <script type = "text/javascript">
+         var str1 = new String( "This is string one" );
+         var index = str1.indexOf( "string" );
+         document.write("indexOf found String :" + index ); 
+         
+         document.write("<br />");
+         var index = str1.indexOf( "one" );
+         document.write("indexOf found String :" + index ); 
+      </script>  
+	  <script type = "text/javascript">
+         var str1 = new String( "This is string one and again string" );
+         var index = str1.lastIndexOf( "string" );
+         document.write("lastIndexOf found String :" + index ); 
+         
+         document.write("<br />");         
+         var index = str1.lastIndexOf( "one" );
+         document.write("lastIndexOf found String :" + index ); 
+      </script>      
+	  <script type = "text/javascript">
+         var str = "For more information, see Chapter 3.4.5.1";
+         var re = /(chapter \d+(\.\d)*)/i;
+         var found = str.match( re );         
+         document.write(found ); 
+		 </script>
+		 <script type = "text/javascript">
+         var str = "Apples are round, and Apples are Juicy.";
+         document.write(str.toLocaleLowerCase( ));
+      </script>
+	  <script type = "text/javascript">
+         var str = "Apples are round, and Apples are Juicy.";
+         document.write(str.toUpperCase( ));
+      </script> 
+	  <script type = "text/javascript">
+         var dt = Date();
+         document.write("Date and Time : " + dt );								//date functions
+      </script>		
+	  <script type = "text/javascript">
+         var dt = new Date("December 25, 1995 23:15:00");
+         document.write("getDate() : " + dt.getDate() ); 
+      </script>  
+	  <script type = "text/javascript">
+         var dt = new Date("December 25, 1995 23:15:00");
+         document.write("getHours() : " + dt.getHours() ); 
+      </script>  
+	  <script type = "text/javascript">
+         var dt = new Date( "Aug 28, 2008 23:30:00" );
+         dt.setUTCDate( 20 );
+         document.write( dt );
+      </script>      
+	  <script type = "text/javascript">
+         var dt = new Date( "December 25, 1995 23:15:20" );
+         document.write("getUTCDate() : " + dt.getUTCDate() ); 
+      </script>    
+	  <script type = "text/javascript">
+         var dt = new Date( );
+         document.write("getMilliseconds() : " + dt.getMilliseconds() ); 
+      </script> 
+	   <script type = "text/javascript">
+         var dt = new Date( "December 25, 1995 23:15:20" );
+         document.write("getUTCFullYear() : " + dt.getUTCFullYear() ); 
+      </script>    
+	  <script type = "text/javascript">
+         var dateobject = new Date(1993, 6, 28, 14, 39, 7);
+         document.write( dateobject.toUTCString() ); 
+      </script> 
+	  <script type = "text/javascript">
+         var dt = new Date( "December 25, 1995 23:15:00" );
+         document.write("getMonth() : " + dt.getMonth() ); 
+      </script> 
+	  <script type = "text/javascript">								//math funtions
+         var value = Math.abs(-1);
+         document.write("First Test Value : " + value ); 
+         
+         var value = Math.abs(null);
+         document.write("<br />Second Test Value : " + value ); 
+         
+         var value = Math.abs(20);
+         document.write("<br />Third Test Value : " + value ); 
+         
+         var value = Math.abs("string");
+         document.write("<br />Fourth Test Value : " + value ); 
+      </script>   
+	  <script type = "text/javascript">
+         var value = Math.atan(-1);
+         document.write("First Test Value : " + value );
+         
+         var value = Math.atan(.5);
+         document.write("<br />Second Test Value : " + value ); 
+         
+         value = Math.atan(30);
+         document.write("<br />Third Test Value : " + value ); 
+         
+         var value = Math.atan("string");
+         document.write("<br />Fourth Test Value : " + value ); 
+      </script>     
+	  <script type = "text/javascript">
+         var value = Math.ceil(45.95);
+         document.write("First Test Value : " + value ); 
+         
+         var value = Math.ceil(45.20);
+         document.write("<br />Second Test Value : " + value ); 
+         
+         var value = Math.ceil(-45.95);
+         document.write("<br />Third Test Value : " + value ); 
+         
+         var value = Math.ceil(-45.20);
+         document.write("<br />Fourth Test Value : " + value ); 
+      </script>  
+	  <script type = "text/javascript">
+         var value = Math.pow(7, 2);
+         document.write("First Test Value : " + value ); 
+         
+         var value = Math.pow(8, 8);
+         document.write("<br />Second Test Value : " + value ); 
+         
+         var value = Math.pow(-1, 2);
+         document.write("<br />Third Test Value : " + value ); 
+         
+         var value = Math.pow(0, 10);
+         document.write("<br />Fourth Test Value : " + value ); 
+      </script>     
+   </body>
+</html>
+<script type = "text/javascript">
+         <!--
+            function showValue() {
+               var val = Number.MAX_VALUE;
+               document.write ("Value of Number.MAX_VALUE : " + val );			//numberfunctions
+            }
+         //-->
+      </script>  
+	  <script type = "text/javascript">
+         <!--
+            function showValue() {
+               var val = Number.MIN_VALUE;
+               alert("Value of Number.MIN_VALUE : " + val );
+            }
+         //-->
+      </script>  
+	  <script type = "text/javascript">
+         <!--
+            function showValue() {
+               var dayOfMonth = 50;
+               
+               if (dayOfMonth < 1 || dayOfMonth > 31) {                     //nan function
+                  dayOfMonth = Number.NaN
+                  alert("Day of Month must be between 1 and 31.")
+               }
+               Document.write("Value of dayOfMonth : " + dayOfMonth );
+            }
+         //-->
+      </script>      
+	  <script type = "text/javascript">
+         <!--
+            function showValue() {
+               var smallNumber = (-Number.MAX_VALUE) * 2              
+               if (smallNumber == Number.NEGATIVE_INFINITY) {
+                  alert("Value of smallNumber : " + smallNumber );
+               }
+            }
+         //-->
+      </script>      
